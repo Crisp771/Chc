@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChcDB", "ChcDB\ChcDB.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChcObjects", "ChcObjects\ChcObjects.csproj", "{E092A385-CE05-4885-91CB-EEBC1DE0CB8E}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ChcWCF", "..\..\WebSites\ChcWCF\", "{7A147D07-6F28-4A48-8290-4EDE8718E39E}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ChcWCF", "ChcWCF\", "{7A147D07-6F28-4A48-8290-4EDE8718E39E}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		ProjectReferences = "{e092a385-ce05-4885-91cb-eebc1de0cb8e}|ChcObjects.dll;{60CD7A46-FD2D-4699-9887-0720BB28456E}|ChcDB.dll;"
