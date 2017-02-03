@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using ChcDB;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace Chc.Models
 {
@@ -46,21 +48,34 @@ namespace Chc.Models
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+    //[DataContract]
+    //public class LoginViewModel : IUser
+    //{
+    //    [Key]
+    //    [DataMember]
+    //    public int UserID { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+    //    [DataMember]
+    //    [Required]
+    //    [Display(Name = "Username")]
+    //    public string Username { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
-    }
+    //    [DataMember]
+    //    public int RoleID { get; set; }
+
+    //    [Display(Name = "Email")]
+    //    [EmailAddress]
+    //    public string Email { get; set; }
+
+    //    [DataMember]
+    //    [Required]
+    //    [DataType(DataType.Password)]
+    //    [Display(Name = "Password")]
+    //    public string Password { get; set; }
+
+    //    [Display(Name = "Remember me?")]
+    //    public bool RememberMe { get; set; }
+    //}
 
     public class RegisterViewModel
     {

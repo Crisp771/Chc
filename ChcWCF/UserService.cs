@@ -17,7 +17,7 @@ namespace ChcWCF
             return new User().GetUsers().ToList();
         }
 
-        public User ValidateUserByUsernameAndPassword(IUser user)
+        public User ValidateUserByUsernameAndPassword(LoginViewModel user)
         {
             var _user = new User(user);
             return _user.ValidateUserByUsernameAndPassword(_user);

@@ -15,7 +15,7 @@ namespace Chc.UserService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.example.com")]
     [System.SerializableAttribute()]
     public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -106,6 +106,115 @@ namespace Chc.UserService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginViewModel", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
+    [System.SerializableAttribute()]
+    public partial class LoginViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool RememberMeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoleIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool RememberMe {
+            get {
+                return this.RememberMeField;
+            }
+            set {
+                if ((this.RememberMeField.Equals(value) != true)) {
+                    this.RememberMeField = value;
+                    this.RaisePropertyChanged("RememberMe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RoleID {
+            get {
+                return this.RoleIDField;
+            }
+            set {
+                if ((this.RoleIDField.Equals(value) != true)) {
+                    this.RoleIDField = value;
+                    this.RaisePropertyChanged("RoleID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserID {
+            get {
+                return this.UserIDField;
+            }
+            set {
+                if ((this.UserIDField.Equals(value) != true)) {
+                    this.UserIDField = value;
+                    this.RaisePropertyChanged("UserID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserService.IUserService")]
     public interface IUserService {
@@ -117,12 +226,10 @@ namespace Chc.UserService {
         System.Threading.Tasks.Task<Chc.UserService.User[]> GetUserListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ValidateUserByUsernameAndPassword", ReplyAction="http://tempuri.org/IUserService/ValidateUserByUsernameAndPasswordResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Chc.UserService.User[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Chc.UserService.User))]
-        Chc.UserService.User ValidateUserByUsernameAndPassword(object user);
+        Chc.UserService.User ValidateUserByUsernameAndPassword(Chc.UserService.LoginViewModel user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ValidateUserByUsernameAndPassword", ReplyAction="http://tempuri.org/IUserService/ValidateUserByUsernameAndPasswordResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(object user);
+        System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(Chc.UserService.LoginViewModel user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -160,11 +267,11 @@ namespace Chc.UserService {
             return base.Channel.GetUserListAsync();
         }
         
-        public Chc.UserService.User ValidateUserByUsernameAndPassword(object user) {
+        public Chc.UserService.User ValidateUserByUsernameAndPassword(Chc.UserService.LoginViewModel user) {
             return base.Channel.ValidateUserByUsernameAndPassword(user);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(object user) {
+        public System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(Chc.UserService.LoginViewModel user) {
             return base.Channel.ValidateUserByUsernameAndPasswordAsync(user);
         }
     }

@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Chc.Models;
+using System.Web.Security;
+using Chc.UserService;
 
 namespace Chc.Controllers
 {
@@ -75,19 +77,52 @@ namespace Chc.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
+
+            var sresult = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
+            using (var us = new UserService.UserServiceClient())
             {
-                case SignInStatus.Success:
+                //var result = (SignInStatus) us.ValidateUser(model);
+
+                //var user = new ApplicationUser() { UserName = model.Username };
+                //var uresult = await UserManager.CreateAsync(user, model.Password);
+
+                var hash = System.Security.Cryptography.SHA1.Create();
+                var encoder = new System.Text.ASCIIEncoding();
+                var combined = encoder.GetBytes(model.Password ?? "");
+                var hashvalue = BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
+
+                model.Password = hashvalue;
+
+                var result = us.ValidateUserByUsernameAndPassword(model);
+
+
+                if (result != null)
+                {
+                    FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                    Response.Cookies.Add(new HttpCookie("RoleId", result.RoleID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
+                    //System.Diagnostics.Debug.WriteLine("Is user authenticated? {0}", User.Identity.IsAuthenticated);
+                    //System.Diagnostics.Debug.WriteLine("Username :  {0}", User.Identity.GetUserName());
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
+                }
+                else
+                {
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
+                }
             }
         }
 

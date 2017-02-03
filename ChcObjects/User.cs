@@ -1,6 +1,7 @@
 ﻿using ChcDB;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -8,15 +9,22 @@ using System.Threading.Tasks;
 
 namespace ChcObjects
 {
-    [DataContract]
+
+    [DataContract(Namespace = "http://schemas.example.com")]
     public class User : IUser
     {
         private readonly IChcDBEntities _context;
+        [Key]
         [DataMember]
         public int UserID { get; set; }
         [DataMember]
+        [Required]
+        [Display(Name = "Username")]
         public string Username { get; set; }
         [DataMember]
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
         [DataMember]
         public int RoleID { get; set; }
@@ -58,9 +66,12 @@ namespace ChcObjects
         public User ValidateUserByUsernameAndPassword(IUser user)
         {
             var User = (_context.tblUsers.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password));
-            var retUser = new User(User);
             if (User != null)
-                return retUser;
+            {
+                var retUser = new User(User);
+                if (User != null)
+                    return retUser;
+            }
             return null;
         }
 

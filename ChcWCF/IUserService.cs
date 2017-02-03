@@ -17,6 +17,6 @@ namespace ChcWCF
         IList<User> GetUserList();
 
         [OperationContract]
-        User ValidateUserByUsernameAndPassword(IUser user);
+        User ValidateUserByUsernameAndPassword(LoginViewModel user);
     }
 }
