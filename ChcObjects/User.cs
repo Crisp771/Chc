@@ -49,6 +49,7 @@ namespace ChcObjects
             this.RoleID = user.RoleID;
             this.UserID = user.UserID;
             this.Username = user.Username;
+            this.Deleted = user.Deleted;
         }
 
         public User(IChcDBEntities context, IUser user)
@@ -59,6 +60,7 @@ namespace ChcObjects
             this.RoleID = user.RoleID;
             this.UserID = user.UserID;
             this.Username = user.Username;
+            this.Deleted = user.Deleted;
         }
         public IList<User> GetUsers()
         {
@@ -109,9 +111,10 @@ namespace ChcObjects
                 var hashvalue = BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
 
                 user.Password = hashvalue;
+                //Audit password changed.
             }
 
-            if (user.Username != this.Username)
+            if (user.Deleted != this.Deleted)
             {
                 user.Deleted = this.Deleted;
             }
