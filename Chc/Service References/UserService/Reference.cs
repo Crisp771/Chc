@@ -329,6 +329,18 @@ namespace Chc.UserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRoles", ReplyAction="http://tempuri.org/IUserService/GetRolesResponse")]
         System.Threading.Tasks.Task<Chc.UserService.Role[]> GetRolesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
+        Chc.UserService.User CreateUser(Chc.UserService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
+        System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        Chc.UserService.User UpdateUser(Chc.UserService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -380,6 +392,22 @@ namespace Chc.UserService {
         
         public System.Threading.Tasks.Task<Chc.UserService.Role[]> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
+        }
+        
+        public Chc.UserService.User CreateUser(Chc.UserService.User user) {
+            return base.Channel.CreateUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user) {
+            return base.Channel.CreateUserAsync(user);
+        }
+        
+        public Chc.UserService.User UpdateUser(Chc.UserService.User user) {
+            return base.Channel.UpdateUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user) {
+            return base.Channel.UpdateUserAsync(user);
         }
     }
 }

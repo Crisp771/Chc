@@ -25,4 +25,19 @@ public class UserService : IUserService
         var Role = new Role();
         return Role.GetRoles();
     }
+
+    public User CreateUser(User user)
+    {
+        // We should be able to just do this, but for some reason the object doesn't instate correctly with the right context.
+        // return user.CreateUser();
+        var u = new User(user);
+        return u.CreateUser();
+    }
+
+    public User UpdateUser(User user)
+    {
+        //return user.UpdateUser();
+        var u = new User(user);
+        return u.UpdateUser();
+    }
 }

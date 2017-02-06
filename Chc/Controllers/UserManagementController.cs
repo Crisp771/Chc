@@ -29,17 +29,17 @@ namespace Chc.Controllers
             return Json(new UserServiceClient().GetUserList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
-        public User CreateUser(User user)
+        public JsonResult CreateUser(User user)
         {
-            return null;
+            return Json(new UserServiceClient().CreateUser(user), JsonRequestBehavior.AllowGet);
         }
 
-        public User UpdateUser(User user)
+        public JsonResult UpdateUser(User user)
         {
-            return null;
+            return Json(new UserServiceClient().UpdateUser(user), JsonRequestBehavior.AllowGet);
         }
 
-        public User DeleteUser(User user)
+        public JsonResult DeleteUser(User user)
         {
             user.Deleted = true;
             return this.UpdateUser(user);

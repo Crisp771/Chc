@@ -18,4 +18,9 @@ public interface IUserService
     [OperationContract]
     IList<Role> GetRoles();
 
+    [OperationContract]
+    User CreateUser(User user);
+
+    [OperationContract]
+    User UpdateUser(User user);
 }
