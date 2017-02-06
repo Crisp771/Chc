@@ -6,5 +6,6 @@
         string Username { get; set; }
         string Password { get; set; }
         int RoleID { get; set; }
+        bool Deleted { get; set; }
     }
 }

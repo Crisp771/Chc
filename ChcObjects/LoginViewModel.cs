@@ -33,6 +33,11 @@ namespace ChcObjects
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [DataMember]
+        [Display(Name = "Deleted")]
+        public bool Deleted { get; set; }
+
         [DataMember]
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }

@@ -28,6 +28,8 @@ namespace ChcObjects
         public string Password { get; set; }
         [DataMember]
         public int RoleID { get; set; }
+        [DataMember]
+        public bool Deleted { get; set; }
 
         public User()
         {
@@ -60,12 +62,12 @@ namespace ChcObjects
         }
         public IList<User> GetUsers()
         {
-            return _context.tblUsers.ToList().Select(s => new User(s)).ToList();
+            return _context.tblUsers.Where(u => !u.Deleted).Select(s => new User(s)).ToList();
         }
 
         public User ValidateUserByUsernameAndPassword(IUser user)
         {
-            var User = (_context.tblUsers.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password));
+            var User = (_context.tblUsers.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password && !u.Deleted));
             if (User != null)
             {
                 var retUser = new User(User);
@@ -77,11 +79,40 @@ namespace ChcObjects
 
         public User ValidateUserByUsernameAndPassword()
         {
-            var User = (_context.tblUsers.FirstOrDefault(u => u.Username == this.Username && u.Password == this.Password));
-            var retUser = new User(User);
-            if (User != null)
+            var user = (_context.tblUsers.FirstOrDefault(u => u.Username == this.Username && u.Password == this.Password && !u.Deleted));
+            var retUser = new User(user);
+            if (user != null)
                 return retUser;
             return null;
+        }
+
+        public User UpdateUser()
+        {
+            var user = (_context.tblUsers.Find(this.UserID));
+
+            user.Username = this.Username;
+            user.RoleID = this.RoleID;
+            user.Password = this.Password;
+            user.Deleted = this.Deleted;
+
+            _context.SaveChanges();
+
+            return new User(user);
+        }
+
+        public User CreateUser()
+        {
+            var t = new tblUser()
+            {
+                Deleted = this.Deleted,
+                Password = this.Password,
+                RoleID = this.RoleID,
+                Username = this.Username
+            };
+
+            _context.tblUsers.Add(t);
+            _context.SaveChanges();
+            return new ChcObjects.User(t);
         }
     }
 }
