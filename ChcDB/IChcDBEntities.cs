@@ -7,5 +7,6 @@ namespace ChcDB
         int SaveChanges();
         DbSet<tblRole> tblRoles { get; set; }
         DbSet<tblUser> tblUsers { get; set; }
+        DbSet<tblUserAudit> tblUserAudits { get; set; }
     }
 }

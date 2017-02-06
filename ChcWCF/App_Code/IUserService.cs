@@ -19,8 +19,11 @@ public interface IUserService
     IList<Role> GetRoles();
 
     [OperationContract]
-    User CreateUser(User user);
+    User CreateUser(User user, int userid);
 
     [OperationContract]
     User UpdateUser(User user);
+
+    [OperationContract]
+    IList<UserAudit> GetUserAudit(User user);
 }

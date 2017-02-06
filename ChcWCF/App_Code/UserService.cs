@@ -26,12 +26,12 @@ public class UserService : IUserService
         return Role.GetRoles();
     }
 
-    public User CreateUser(User user)
+    public User CreateUser(User user, int userid)
     {
         // We should be able to just do this, but for some reason the object doesn't instate correctly with the right context.
         // return user.CreateUser();
         var u = new User(user);
-        return u.CreateUser();
+        return u.CreateUser(userid);
     }
 
     public User UpdateUser(User user)
@@ -39,5 +39,10 @@ public class UserService : IUserService
         //return user.UpdateUser();
         var u = new User(user);
         return u.UpdateUser();
+    }
+
+    public IList<UserAudit> GetUserAudit(User user)
+    {
+        return new User(user).GetUserAudit();
     }
 }

@@ -67,6 +67,11 @@ namespace ChcObjects
             return _context.tblUsers.Where(u => !u.Deleted).ToList().Select(s => new User() { UserID = s.UserID, Username=s.Username, RoleID=s.RoleID, Deleted=s.Deleted, Password = string.Empty  }).ToList();
         }
 
+        public IList<UserAudit> GetUserAudit()
+        {
+            return new UserAudit(_context).GetAuditsByUser(this);
+        }
+
         public User ValidateUserByUsernameAndPassword(IUser user)
         {
             var User = (_context.tblUsers.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password && !u.Deleted));
@@ -124,7 +129,7 @@ namespace ChcObjects
             return new User(user);
         }
 
-        public User CreateUser()
+        public User CreateUser(int userid)
         {
             var hash = System.Security.Cryptography.SHA1.Create();
             var encoder = new System.Text.ASCIIEncoding();
@@ -141,7 +146,17 @@ namespace ChcObjects
 
             _context.tblUsers.Add(t);
             _context.SaveChanges();
+
+            var audit = new UserAudit(_context);
+            audit.CarriedOutByUserID = userid;
+            audit.Event = "User Created.";
+            audit.EventDateTime = DateTime.Now;
+            audit.UserID = t.UserID;
+            audit.Audit();
+
             return new ChcObjects.User(t);
         }
+
+
     }
 }

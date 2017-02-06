@@ -14,6 +14,13 @@ namespace ChcDB
     
     public partial class tblUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblUser()
+        {
+            this.tblUserAudits = new HashSet<tblUserAudit>();
+            this.tblUserAudits1 = new HashSet<tblUserAudit>();
+        }
+    
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -21,5 +28,9 @@ namespace ChcDB
         public bool Deleted { get; set; }
     
         public virtual tblRole tblRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUserAudit> tblUserAudits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUserAudit> tblUserAudits1 { get; set; }
     }
 }

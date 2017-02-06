@@ -27,5 +27,6 @@ namespace ChcDB
     
         public virtual DbSet<tblRole> tblRoles { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tblUserAudit> tblUserAudits { get; set; }
     }
 }

@@ -12,6 +12,16 @@
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Rolename" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblUserAudit">
+          <Key>
+            <PropertyRef Name="UserAuditID" />
+          </Key>
+          <Property Name="UserAuditID" Type="int" Nullable="false" />
+          <Property Name="EventDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Event" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="CarriedOutByUserID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblUsers">
           <Key>
             <PropertyRef Name="UserID" />
@@ -22,6 +32,30 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_tblUserAudit_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUserAudit" Type="Self.tblUserAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserAudit">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserAudit_tblUsers1">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUserAudit" Type="Self.tblUserAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserAudit">
+              <PropertyRef Name="CarriedOutByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Roles">
           <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="1" />
           <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
@@ -36,7 +70,16 @@
         </Association>
         <EntityContainer Name="ChcDBModelStoreContainer">
           <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserAudit" EntityType="Self.tblUserAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblUserAudit_tblUsers" Association="Self.FK_tblUserAudit_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserAudit" EntitySet="tblUserAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserAudit_tblUsers1" Association="Self.FK_tblUserAudit_tblUsers1">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserAudit" EntitySet="tblUserAudit" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="tblRoles" EntitySet="tblRoles" />
             <End Role="tblUsers" EntitySet="tblUsers" />
@@ -52,6 +95,15 @@
           <AssociationSet Name="FK_Users_Roles" Association="ChcDBModel.FK_Users_Roles">
             <End Role="tblRole" EntitySet="tblRoles" />
             <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <EntitySet Name="tblUserAudits" EntityType="ChcDBModel.tblUserAudit" />
+          <AssociationSet Name="FK_tblUserAudit_tblUsers" Association="ChcDBModel.FK_tblUserAudit_tblUsers">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblUserAudit" EntitySet="tblUserAudits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserAudit_tblUsers1" Association="ChcDBModel.FK_tblUserAudit_tblUsers1">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblUserAudit" EntitySet="tblUserAudits" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblRole">
@@ -72,6 +124,8 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblRole" Relationship="ChcDBModel.FK_Users_Roles" FromRole="tblUser" ToRole="tblRole" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblUserAudits" Relationship="ChcDBModel.FK_tblUserAudit_tblUsers" FromRole="tblUser" ToRole="tblUserAudit" />
+          <NavigationProperty Name="tblUserAudits1" Relationship="ChcDBModel.FK_tblUserAudit_tblUsers1" FromRole="tblUser" ToRole="tblUserAudit" />
         </EntityType>
         <Association Name="FK_Users_Roles">
           <End Type="ChcDBModel.tblRole" Role="tblRole" Multiplicity="1" />
@@ -82,6 +136,42 @@
             </Principal>
             <Dependent Role="tblUser">
               <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblUserAudit">
+          <Key>
+            <PropertyRef Name="UserAuditID" />
+          </Key>
+          <Property Name="UserAuditID" Type="Int32" Nullable="false" />
+          <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Event" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="CarriedOutByUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUser" Relationship="ChcDBModel.FK_tblUserAudit_tblUsers" FromRole="tblUserAudit" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser1" Relationship="ChcDBModel.FK_tblUserAudit_tblUsers1" FromRole="tblUserAudit" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK_tblUserAudit_tblUsers">
+          <End Type="ChcDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="ChcDBModel.tblUserAudit" Role="tblUserAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserAudit">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserAudit_tblUsers1">
+          <End Type="ChcDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="ChcDBModel.tblUserAudit" Role="tblUserAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserAudit">
+              <PropertyRef Name="CarriedOutByUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -107,6 +197,17 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserAudits">
+            <EntityTypeMapping TypeName="ChcDBModel.tblUserAudit">
+              <MappingFragment StoreEntitySet="tblUserAudit">
+                <ScalarProperty Name="CarriedOutByUserID" ColumnName="CarriedOutByUserID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
+                <ScalarProperty Name="UserAuditID" ColumnName="UserAuditID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

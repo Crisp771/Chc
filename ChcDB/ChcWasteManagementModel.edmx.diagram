@@ -8,6 +8,9 @@
         <EntityTypeShape EntityType="ChcDBModel.tblRole" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="ChcDBModel.tblUser" Width="1.5" PointX="3" PointY="0.875" />
         <AssociationConnector Association="ChcDBModel.FK_Users_Roles" />
+        <EntityTypeShape EntityType="ChcDBModel.tblUserAudit" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="ChcDBModel.FK_tblUserAudit_tblUsers" />
+        <AssociationConnector Association="ChcDBModel.FK_tblUserAudit_tblUsers1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
