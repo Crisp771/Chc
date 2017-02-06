@@ -92,7 +92,7 @@ namespace Chc.Controllers
             //        return View(model);
             //}
 
-            var sresult = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
+            //var sresult = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             using (var us = new UserService.UserServiceClient())
             {
                 //var result = (SignInStatus) us.ValidateUser(model);
@@ -426,7 +426,9 @@ namespace Chc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            FormsAuthentication.SignOut();
+            Response.Cookies.Remove("RoleId");
             return RedirectToAction("Index", "Home");
         }
 
