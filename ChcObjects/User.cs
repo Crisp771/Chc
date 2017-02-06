@@ -62,6 +62,33 @@ namespace ChcObjects
             this.Username = user.Username;
             this.Deleted = user.Deleted;
         }
+
+        public User(int id)
+        {
+            _context = new ChcDBEntities();
+
+            var user = _context.tblUsers.Find(id);
+
+            this.Password = user.Password;
+            this.RoleID = user.RoleID;
+            this.UserID = user.UserID;
+            this.Username = user.Username;
+            this.Deleted = user.Deleted;
+
+        }
+        public User(IChcDBEntities context, int id)
+        {
+            _context = context;
+
+            var user = _context.tblUsers.Find(id);
+
+            this.Password = user.Password;
+            this.RoleID = user.RoleID;
+            this.UserID = user.UserID;
+            this.Username = user.Username;
+            this.Deleted = user.Deleted;
+
+        }
         public IList<User> GetUsers()
         {
             return _context.tblUsers.Where(u => !u.Deleted).ToList().Select(s => new User() { UserID = s.UserID, Username=s.Username, RoleID=s.RoleID, Deleted=s.Deleted, Password = string.Empty  }).ToList();
@@ -93,14 +120,19 @@ namespace ChcObjects
             return null;
         }
 
-        public User UpdateUser()
+        public User UpdateUser(int userid)
         {
             var user = (_context.tblUsers.Find(this.UserID));
 
             if (user.Username != this.Username)
             {
+                var audit = new UserAudit(_context);
+                audit.CarriedOutByUserID = userid;
+                audit.Event = string.Format("Username changed from {0} to {1}.", user.Username, this.Username);
+                audit.EventDateTime = DateTime.Now;
+                audit.UserID = this.UserID;
+                audit.Audit();
                 user.Username = this.Username;
-                //Audit This
             }
 
             if (user.RoleID != this.RoleID)
@@ -110,13 +142,19 @@ namespace ChcObjects
 
             if (!string.IsNullOrEmpty(this.Password))
             {
+                var audit = new UserAudit(_context);
+                audit.CarriedOutByUserID = userid;
+                audit.Event = string.Format("Password Changed.");
+                audit.EventDateTime = DateTime.Now;
+                audit.UserID = this.UserID;
+                audit.Audit();
+
                 var hash = System.Security.Cryptography.SHA1.Create();
                 var encoder = new System.Text.ASCIIEncoding();
                 var combined = encoder.GetBytes(this.Password ?? "");
                 var hashvalue = BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
 
                 user.Password = hashvalue;
-                //Audit password changed.
             }
 
             if (user.Deleted != this.Deleted)

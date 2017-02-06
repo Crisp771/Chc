@@ -44,6 +44,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.example.com" minOccurs="0" name="user" nillable="true" type="q5:User" />
+        <xs:element minOccurs="0" name="userid" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -58,6 +59,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.example.com" minOccurs="0" name="user" nillable="true" type="q7:User" />
+        <xs:element minOccurs="0" name="userid" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -65,6 +67,34 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q8="http://schemas.example.com" minOccurs="0" name="UpdateUserResult" nillable="true" type="q8:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserAudit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.example.com" minOccurs="0" name="user" nillable="true" type="q9:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserAuditResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ChcObjects" minOccurs="0" name="GetUserAuditResult" nillable="true" type="q10:ArrayOfUserAudit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.example.com" minOccurs="0" name="GetUserByIDResult" nillable="true" type="q11:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

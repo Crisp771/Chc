@@ -308,6 +308,115 @@ namespace Chc.UserService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserAudit", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
+    [System.SerializableAttribute()]
+    public partial class UserAudit : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CarriedOutByUserIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EventField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime EventDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserAuditIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CarriedOutByUserID {
+            get {
+                return this.CarriedOutByUserIDField;
+            }
+            set {
+                if ((this.CarriedOutByUserIDField.Equals(value) != true)) {
+                    this.CarriedOutByUserIDField = value;
+                    this.RaisePropertyChanged("CarriedOutByUserID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Event {
+            get {
+                return this.EventField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EventField, value) != true)) {
+                    this.EventField = value;
+                    this.RaisePropertyChanged("Event");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EventDateTime {
+            get {
+                return this.EventDateTimeField;
+            }
+            set {
+                if ((this.EventDateTimeField.Equals(value) != true)) {
+                    this.EventDateTimeField = value;
+                    this.RaisePropertyChanged("EventDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserAuditID {
+            get {
+                return this.UserAuditIDField;
+            }
+            set {
+                if ((this.UserAuditIDField.Equals(value) != true)) {
+                    this.UserAuditIDField = value;
+                    this.RaisePropertyChanged("UserAuditID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserID {
+            get {
+                return this.UserIDField;
+            }
+            set {
+                if ((this.UserIDField.Equals(value) != true)) {
+                    this.UserIDField = value;
+                    this.RaisePropertyChanged("UserID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserService.IUserService")]
     public interface IUserService {
@@ -331,16 +440,28 @@ namespace Chc.UserService {
         System.Threading.Tasks.Task<Chc.UserService.Role[]> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        Chc.UserService.User CreateUser(Chc.UserService.User user);
+        Chc.UserService.User CreateUser(Chc.UserService.User user, int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user);
+        System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user, int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        Chc.UserService.User UpdateUser(Chc.UserService.User user);
+        Chc.UserService.User UpdateUser(Chc.UserService.User user, int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user);
+        System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user, int userid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserAudit", ReplyAction="http://tempuri.org/IUserService/GetUserAuditResponse")]
+        Chc.UserService.UserAudit[] GetUserAudit(Chc.UserService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserAudit", ReplyAction="http://tempuri.org/IUserService/GetUserAuditResponse")]
+        System.Threading.Tasks.Task<Chc.UserService.UserAudit[]> GetUserAuditAsync(Chc.UserService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByID", ReplyAction="http://tempuri.org/IUserService/GetUserByIDResponse")]
+        Chc.UserService.User GetUserByID(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByID", ReplyAction="http://tempuri.org/IUserService/GetUserByIDResponse")]
+        System.Threading.Tasks.Task<Chc.UserService.User> GetUserByIDAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -394,20 +515,36 @@ namespace Chc.UserService {
             return base.Channel.GetRolesAsync();
         }
         
-        public Chc.UserService.User CreateUser(Chc.UserService.User user) {
-            return base.Channel.CreateUser(user);
+        public Chc.UserService.User CreateUser(Chc.UserService.User user, int userid) {
+            return base.Channel.CreateUser(user, userid);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user) {
-            return base.Channel.CreateUserAsync(user);
+        public System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user, int userid) {
+            return base.Channel.CreateUserAsync(user, userid);
         }
         
-        public Chc.UserService.User UpdateUser(Chc.UserService.User user) {
-            return base.Channel.UpdateUser(user);
+        public Chc.UserService.User UpdateUser(Chc.UserService.User user, int userid) {
+            return base.Channel.UpdateUser(user, userid);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user) {
-            return base.Channel.UpdateUserAsync(user);
+        public System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user, int userid) {
+            return base.Channel.UpdateUserAsync(user, userid);
+        }
+        
+        public Chc.UserService.UserAudit[] GetUserAudit(Chc.UserService.User user) {
+            return base.Channel.GetUserAudit(user);
+        }
+        
+        public System.Threading.Tasks.Task<Chc.UserService.UserAudit[]> GetUserAuditAsync(Chc.UserService.User user) {
+            return base.Channel.GetUserAuditAsync(user);
+        }
+        
+        public Chc.UserService.User GetUserByID(int id) {
+            return base.Channel.GetUserByID(id);
+        }
+        
+        public System.Threading.Tasks.Task<Chc.UserService.User> GetUserByIDAsync(int id) {
+            return base.Channel.GetUserByIDAsync(id);
         }
     }
 }

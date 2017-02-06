@@ -38,6 +38,18 @@
   <wsdl:message name="IUserService_UpdateUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_GetUserAudit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserAudit" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUserAudit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserAuditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUserByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByID" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUserByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByIDResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="GetUserList">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserList" message="tns:IUserService_GetUserList_InputMessage" />
@@ -58,6 +70,14 @@
     <wsdl:operation name="UpdateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUser" message="tns:IUserService_UpdateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserResponse" message="tns:IUserService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAudit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserAudit" message="tns:IUserService_GetUserAudit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUserAuditResponse" message="tns:IUserService_GetUserAudit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserByID" message="tns:IUserService_GetUserByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUserByIDResponse" message="tns:IUserService_GetUserByID_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -100,6 +120,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAudit">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetUserAudit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByID">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetUserByID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

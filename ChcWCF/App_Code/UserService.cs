@@ -34,15 +34,20 @@ public class UserService : IUserService
         return u.CreateUser(userid);
     }
 
-    public User UpdateUser(User user)
+    public User UpdateUser(User user, int userid)
     {
         //return user.UpdateUser();
         var u = new User(user);
-        return u.UpdateUser();
+        return u.UpdateUser(userid);
     }
 
     public IList<UserAudit> GetUserAudit(User user)
     {
         return new User(user).GetUserAudit();
+    }
+
+    public User GetUserByID(int id)
+    {
+        return new User(id);
     }
 }

@@ -22,8 +22,11 @@ public interface IUserService
     User CreateUser(User user, int userid);
 
     [OperationContract]
-    User UpdateUser(User user);
+    User UpdateUser(User user, int userid);
 
     [OperationContract]
     IList<UserAudit> GetUserAudit(User user);
+
+    [OperationContract]
+    User GetUserByID(int id);
 }

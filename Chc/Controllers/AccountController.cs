@@ -112,8 +112,9 @@ namespace Chc.Controllers
 
                 if (result != null)
                 {
-                    FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                    Response.Cookies.Add(new HttpCookie("RoleId", result.RoleID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
+                    FormsAuthentication.SetAuthCookie(result.UserID.ToString(), model.RememberMe);
+                    //Response.Cookies.Add(new HttpCookie("RoleId", result.RoleID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
+                    //Response.Cookies.Add(new HttpCookie("UserId", result.UserID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
                     //System.Diagnostics.Debug.WriteLine("Is user authenticated? {0}", User.Identity.IsAuthenticated);
                     //System.Diagnostics.Debug.WriteLine("Username :  {0}", User.Identity.GetUserName());
                     return RedirectToLocal(returnUrl);

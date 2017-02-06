@@ -24,4 +24,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Role" nillable="true" type="tns:Role" />
+  <xs:complexType name="ArrayOfUserAudit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserAudit" nillable="true" type="tns:UserAudit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserAudit" nillable="true" type="tns:ArrayOfUserAudit" />
+  <xs:complexType name="UserAudit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CarriedOutByUserID" type="xs:int" />
+      <xs:element minOccurs="0" name="Event" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserAuditID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserAudit" nillable="true" type="tns:UserAudit" />
 </xs:schema>

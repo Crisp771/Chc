@@ -12,10 +12,16 @@ namespace Chc.Controllers
     public class UserManagementController : Controller
     {
         // GET: UserManagement
+        [Authorize(Users = "1")]
         public ActionResult Index()
         {
             PopulateRoleLookup();
             return View();
+        }
+
+        public PartialViewResult UserAudit()
+        {
+            return PartialView();
         }
 
         private void PopulateRoleLookup()
@@ -31,12 +37,16 @@ namespace Chc.Controllers
 
         public JsonResult CreateUser(User user)
         {
-            return Json(new UserServiceClient().CreateUser(user), JsonRequestBehavior.AllowGet);
+            var userid = 0;
+            userid = int.Parse(HttpContext.User.Identity.Name);
+            return Json(new UserServiceClient().CreateUser(user, userid), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult UpdateUser(User user)
         {
-            return Json(new UserServiceClient().UpdateUser(user), JsonRequestBehavior.AllowGet);
+            int userid = 0;
+            userid = int.Parse(HttpContext.User.Identity.Name);
+            return Json(new UserServiceClient().UpdateUser(user, userid), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteUser(User user)
