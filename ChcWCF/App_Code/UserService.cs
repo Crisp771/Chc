@@ -19,4 +19,10 @@ public class UserService : IUserService
         var _user = new User(user);
         return _user.ValidateUserByUsernameAndPassword(_user);
     }
+
+    public IList<Role> GetRoles()
+    {
+        var Role = new Role();
+        return Role.GetRoles();
+    }
 }

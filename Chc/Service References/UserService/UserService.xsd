@@ -8,6 +8,7 @@
   <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
   <xs:complexType name="User">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RoleID" type="xs:int" />
       <xs:element minOccurs="0" name="UserID" type="xs:int" />

@@ -15,4 +15,7 @@ public interface IUserService
 
     [OperationContract]
     User ValidateUserByUsernameAndPassword(LoginViewModel user);
+    [OperationContract]
+    IList<Role> GetRoles();
+
 }

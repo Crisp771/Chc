@@ -1,0 +1,32 @@
+﻿@model Chc.UserService.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo().Grid<Chc.UserService.User>()
+    .Name("UserGrid")
+    .Columns(c =>
+    {
+        c.Bound(b => b.Username);
+        c.Bound(b => b.Password).ClientTemplate("***").EditorTemplateName("password");
+        c.ForeignKey(b => b.RoleID, (System.Collections.IEnumerable) ViewData["RoleLookup"], "RoleID", "Rolename");
+        c.Command(b => { b.Edit(); b.Destroy(); });
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Model(model => { model.Id(s => s.UserID); })
+        .Create(update => update.Action("CreateUser", "UserManagement"))
+        .Read(read => read.Action("GetUsers", "UserManagement"))
+        .Update(update => update.Action("UpdateUser", "UserManagement"))
+        .Destroy(update => update.Action("DeleteUser", "UserManagement"))
+    )
+)

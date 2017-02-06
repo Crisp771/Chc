@@ -62,7 +62,7 @@ namespace ChcObjects
         }
         public IList<User> GetUsers()
         {
-            return _context.tblUsers.Where(u => !u.Deleted).Select(s => new User(s)).ToList();
+            return _context.tblUsers.Where(u => !u.Deleted).ToList().Select(s => new User() { UserID = s.UserID, Username=s.Username, RoleID=s.RoleID, Deleted=s.Deleted, Password = string.Empty  }).ToList();
         }
 
         public User ValidateUserByUsernameAndPassword(IUser user)
@@ -90,10 +90,31 @@ namespace ChcObjects
         {
             var user = (_context.tblUsers.Find(this.UserID));
 
-            user.Username = this.Username;
-            user.RoleID = this.RoleID;
-            user.Password = this.Password;
-            user.Deleted = this.Deleted;
+            if (user.Username != this.Username)
+            {
+                user.Username = this.Username;
+                //Audit This
+            }
+
+            if (user.RoleID != this.RoleID)
+            {
+                user.RoleID = this.RoleID;
+            }
+
+            if (!string.IsNullOrEmpty(this.Password))
+            {
+                var hash = System.Security.Cryptography.SHA1.Create();
+                var encoder = new System.Text.ASCIIEncoding();
+                var combined = encoder.GetBytes(this.Password ?? "");
+                var hashvalue = BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
+
+                user.Password = hashvalue;
+            }
+
+            if (user.Username != this.Username)
+            {
+                user.Deleted = this.Deleted;
+            }
 
             _context.SaveChanges();
 
@@ -102,10 +123,15 @@ namespace ChcObjects
 
         public User CreateUser()
         {
+            var hash = System.Security.Cryptography.SHA1.Create();
+            var encoder = new System.Text.ASCIIEncoding();
+            var combined = encoder.GetBytes(this.Password ?? "");
+            var hashvalue = BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
+
             var t = new tblUser()
             {
                 Deleted = this.Deleted,
-                Password = this.Password,
+                Password = hashvalue,
                 RoleID = this.RoleID,
                 Username = this.Username
             };

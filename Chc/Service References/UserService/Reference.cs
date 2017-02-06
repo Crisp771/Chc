@@ -23,6 +23,9 @@ namespace Chc.UserService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -41,6 +44,19 @@ namespace Chc.UserService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
+                }
             }
         }
         
@@ -116,6 +132,9 @@ namespace Chc.UserService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -137,6 +156,19 @@ namespace Chc.UserService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
+                }
             }
         }
         
@@ -215,6 +247,67 @@ namespace Chc.UserService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
+    [System.SerializableAttribute()]
+    public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoleIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RolenameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RoleID {
+            get {
+                return this.RoleIDField;
+            }
+            set {
+                if ((this.RoleIDField.Equals(value) != true)) {
+                    this.RoleIDField = value;
+                    this.RaisePropertyChanged("RoleID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Rolename {
+            get {
+                return this.RolenameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolenameField, value) != true)) {
+                    this.RolenameField = value;
+                    this.RaisePropertyChanged("Rolename");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserService.IUserService")]
     public interface IUserService {
@@ -230,6 +323,12 @@ namespace Chc.UserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ValidateUserByUsernameAndPassword", ReplyAction="http://tempuri.org/IUserService/ValidateUserByUsernameAndPasswordResponse")]
         System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(Chc.UserService.LoginViewModel user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRoles", ReplyAction="http://tempuri.org/IUserService/GetRolesResponse")]
+        Chc.UserService.Role[] GetRoles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRoles", ReplyAction="http://tempuri.org/IUserService/GetRolesResponse")]
+        System.Threading.Tasks.Task<Chc.UserService.Role[]> GetRolesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -273,6 +372,14 @@ namespace Chc.UserService {
         
         public System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(Chc.UserService.LoginViewModel user) {
             return base.Channel.ValidateUserByUsernameAndPasswordAsync(user);
+        }
+        
+        public Chc.UserService.Role[] GetRoles() {
+            return base.Channel.GetRoles();
+        }
+        
+        public System.Threading.Tasks.Task<Chc.UserService.Role[]> GetRolesAsync() {
+            return base.Channel.GetRolesAsync();
         }
     }
 }

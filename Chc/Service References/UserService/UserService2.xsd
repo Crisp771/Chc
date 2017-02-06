@@ -28,4 +28,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetRoles">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRolesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ChcObjects" minOccurs="0" name="GetRolesResult" nillable="true" type="q4:ArrayOfRole" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -20,6 +20,12 @@
   <wsdl:message name="IUserService_ValidateUserByUsernameAndPassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidateUserByUsernameAndPasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_GetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="GetUserList">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserList" message="tns:IUserService_GetUserList_InputMessage" />
@@ -28,6 +34,10 @@
     <wsdl:operation name="ValidateUserByUsernameAndPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/ValidateUserByUsernameAndPassword" message="tns:IUserService_ValidateUserByUsernameAndPassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/ValidateUserByUsernameAndPasswordResponse" message="tns:IUserService_ValidateUserByUsernameAndPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetRoles" message="tns:IUserService_GetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetRolesResponse" message="tns:IUserService_GetRoles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -43,6 +53,15 @@
     </wsdl:operation>
     <wsdl:operation name="ValidateUserByUsernameAndPassword">
       <soap:operation soapAction="http://tempuri.org/IUserService/ValidateUserByUsernameAndPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetRoles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
