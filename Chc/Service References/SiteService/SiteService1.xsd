@@ -27,6 +27,7 @@
       <xs:element minOccurs="0" name="ActionDetails" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ContactDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
       <xs:element minOccurs="0" name="SICcode" type="xs:int" />
       <xs:element minOccurs="0" name="SiteID" type="xs:int" />
       <xs:element minOccurs="0" name="SiteName" nillable="true" type="xs:string" />

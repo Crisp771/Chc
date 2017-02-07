@@ -141,6 +141,9 @@ namespace Chc.SiteService {
         private string ContactDetailsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SICcodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -194,6 +197,19 @@ namespace Chc.SiteService {
                 if ((object.ReferenceEquals(this.ContactDetailsField, value) != true)) {
                     this.ContactDetailsField = value;
                     this.RaisePropertyChanged("ContactDetails");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
                 }
             }
         }

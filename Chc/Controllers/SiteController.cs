@@ -11,6 +11,7 @@ namespace Chc.Controllers
 {
     public class SiteController : Controller
     {
+        [Authorize]
         // GET: Site
         public ActionResult Index()
         {
@@ -40,9 +41,9 @@ namespace Chc.Controllers
         }
         public JsonResult DeleteSite(Site site)
         {
+            site.Deleted = true;
             
-            new SiteServiceClient().DeleteSite(site.SiteID);
-            return Json(null, JsonRequestBehavior.AllowGet);
+            return Json(new SiteServiceClient().UpdateSite(site), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -40,6 +40,10 @@
                     {
                         <li>@Html.ActionLink("Users", "Index", "UserManagement")</li>
                     }
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Sites", "Index", "Site")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
