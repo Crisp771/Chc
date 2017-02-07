@@ -263,6 +263,115 @@ namespace Chc.SiteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SiteAudit", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
+    [System.SerializableAttribute()]
+    public partial class SiteAudit : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EventField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime EventDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SiteAuditIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SiteIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Event {
+            get {
+                return this.EventField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EventField, value) != true)) {
+                    this.EventField = value;
+                    this.RaisePropertyChanged("Event");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EventDateTime {
+            get {
+                return this.EventDateTimeField;
+            }
+            set {
+                if ((this.EventDateTimeField.Equals(value) != true)) {
+                    this.EventDateTimeField = value;
+                    this.RaisePropertyChanged("EventDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SiteAuditID {
+            get {
+                return this.SiteAuditIDField;
+            }
+            set {
+                if ((this.SiteAuditIDField.Equals(value) != true)) {
+                    this.SiteAuditIDField = value;
+                    this.RaisePropertyChanged("SiteAuditID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SiteID {
+            get {
+                return this.SiteIDField;
+            }
+            set {
+                if ((this.SiteIDField.Equals(value) != true)) {
+                    this.SiteIDField = value;
+                    this.RaisePropertyChanged("SiteID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserID {
+            get {
+                return this.UserIDField;
+            }
+            set {
+                if ((this.UserIDField.Equals(value) != true)) {
+                    this.UserIDField = value;
+                    this.RaisePropertyChanged("UserID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SiteService.ISiteService")]
     public interface ISiteService {
@@ -292,16 +401,22 @@ namespace Chc.SiteService {
         System.Threading.Tasks.Task<Chc.SiteService.Site> GetSiteByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/CreateSite", ReplyAction="http://tempuri.org/ISiteService/CreateSiteResponse")]
-        Chc.SiteService.Site CreateSite(Chc.SiteService.Site site);
+        Chc.SiteService.Site CreateSite(Chc.SiteService.Site site, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/CreateSite", ReplyAction="http://tempuri.org/ISiteService/CreateSiteResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.Site> CreateSiteAsync(Chc.SiteService.Site site);
+        System.Threading.Tasks.Task<Chc.SiteService.Site> CreateSiteAsync(Chc.SiteService.Site site, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/UpdateSite", ReplyAction="http://tempuri.org/ISiteService/UpdateSiteResponse")]
-        Chc.SiteService.Site UpdateSite(Chc.SiteService.Site site);
+        Chc.SiteService.Site UpdateSite(Chc.SiteService.Site site, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/UpdateSite", ReplyAction="http://tempuri.org/ISiteService/UpdateSiteResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.Site> UpdateSiteAsync(Chc.SiteService.Site site);
+        System.Threading.Tasks.Task<Chc.SiteService.Site> UpdateSiteAsync(Chc.SiteService.Site site, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSiteAudit", ReplyAction="http://tempuri.org/ISiteService/GetSiteAuditResponse")]
+        Chc.SiteService.SiteAudit[] GetSiteAudit(Chc.SiteService.Site site);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSiteAudit", ReplyAction="http://tempuri.org/ISiteService/GetSiteAuditResponse")]
+        System.Threading.Tasks.Task<Chc.SiteService.SiteAudit[]> GetSiteAuditAsync(Chc.SiteService.Site site);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -363,20 +478,28 @@ namespace Chc.SiteService {
             return base.Channel.GetSiteByIdAsync(id);
         }
         
-        public Chc.SiteService.Site CreateSite(Chc.SiteService.Site site) {
-            return base.Channel.CreateSite(site);
+        public Chc.SiteService.Site CreateSite(Chc.SiteService.Site site, int userId) {
+            return base.Channel.CreateSite(site, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.Site> CreateSiteAsync(Chc.SiteService.Site site) {
-            return base.Channel.CreateSiteAsync(site);
+        public System.Threading.Tasks.Task<Chc.SiteService.Site> CreateSiteAsync(Chc.SiteService.Site site, int userId) {
+            return base.Channel.CreateSiteAsync(site, userId);
         }
         
-        public Chc.SiteService.Site UpdateSite(Chc.SiteService.Site site) {
-            return base.Channel.UpdateSite(site);
+        public Chc.SiteService.Site UpdateSite(Chc.SiteService.Site site, int userId) {
+            return base.Channel.UpdateSite(site, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.Site> UpdateSiteAsync(Chc.SiteService.Site site) {
-            return base.Channel.UpdateSiteAsync(site);
+        public System.Threading.Tasks.Task<Chc.SiteService.Site> UpdateSiteAsync(Chc.SiteService.Site site, int userId) {
+            return base.Channel.UpdateSiteAsync(site, userId);
+        }
+        
+        public Chc.SiteService.SiteAudit[] GetSiteAudit(Chc.SiteService.Site site) {
+            return base.Channel.GetSiteAudit(site);
+        }
+        
+        public System.Threading.Tasks.Task<Chc.SiteService.SiteAudit[]> GetSiteAuditAsync(Chc.SiteService.Site site) {
+            return base.Channel.GetSiteAuditAsync(site);
         }
     }
 }

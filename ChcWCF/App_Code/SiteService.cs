@@ -29,13 +29,23 @@ public class SiteService : ISiteService
         return new Site(id);
     }
 
-    public Site CreateSite(Site site)
+    public Site CreateSite(Site site, int userId)
     {
-        return new Site().CreateSite(site);
+        return new Site().CreateSite(site, userId);
     }
 
-    public Site UpdateSite(Site site)
+    public Site UpdateSite(Site site, int userId)
     {
-        return new Site().UpdateSite(site);
+        return new Site().UpdateSite(site, userId);
     }
+
+    public IList<SiteAudit> GetSiteAudit(Site site)
+    {
+        return new SiteAudit().GetSiteAuditBySite(site);
+    }
+
+    //public SiteAudit CreateSiteAudit(SiteAudit siteAudit)
+    //{
+    //    return new SiteAudit().Audit(siteAudit);
+    //}
 }

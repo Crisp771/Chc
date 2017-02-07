@@ -22,6 +22,16 @@
           <Property Name="SIC" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="tblSiteAudit">
+          <Key>
+            <PropertyRef Name="SiteAuditID" />
+          </Key>
+          <Property Name="SiteAuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Event" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblSites">
           <Key>
             <PropertyRef Name="SiteID" />
@@ -38,11 +48,11 @@
           <Key>
             <PropertyRef Name="UserAuditID" />
           </Key>
-          <Property Name="UserAuditID" Type="int" Nullable="false" />
           <Property Name="EventDateTime" Type="datetime" Nullable="false" />
           <Property Name="Event" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="CarriedOutByUserID" Type="int" Nullable="false" />
+          <Property Name="UserAuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUsers">
           <Key>
@@ -54,6 +64,30 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_tblSiteAudit_tblSites">
+          <End Role="tblSites" Type="Self.tblSites" Multiplicity="1" />
+          <End Role="tblSiteAudit" Type="Self.tblSiteAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSites">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="tblSiteAudit">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSiteAudit_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblSiteAudit" Type="Self.tblSiteAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblSiteAudit">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblSites_tblSICLookup">
           <End Role="tblSICLookup" Type="Self.tblSICLookup" Multiplicity="1" />
           <End Role="tblSites" Type="Self.tblSites" Multiplicity="*" />
@@ -105,9 +139,18 @@
         <EntityContainer Name="ChcDBModelStoreContainer">
           <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSICLookup" EntityType="Self.tblSICLookup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSiteAudit" EntityType="Self.tblSiteAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSites" EntityType="Self.tblSites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserAudit" EntityType="Self.tblUserAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblSiteAudit_tblSites" Association="Self.FK_tblSiteAudit_tblSites">
+            <End Role="tblSites" EntitySet="tblSites" />
+            <End Role="tblSiteAudit" EntitySet="tblSiteAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSiteAudit_tblUsers" Association="Self.FK_tblSiteAudit_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblSiteAudit" EntitySet="tblSiteAudit" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblSites_tblSICLookup" Association="Self.FK_tblSites_tblSICLookup">
             <End Role="tblSICLookup" EntitySet="tblSICLookup" />
             <End Role="tblSites" EntitySet="tblSites" />
@@ -151,6 +194,15 @@
             <End Role="tblSICLookup" EntitySet="tblSICLookups" />
             <End Role="tblSite" EntitySet="tblSites" />
           </AssociationSet>
+          <EntitySet Name="tblSiteAudits" EntityType="ChcDBModel.tblSiteAudit" />
+          <AssociationSet Name="FK_tblSiteAudit_tblSites" Association="ChcDBModel.FK_tblSiteAudit_tblSites">
+            <End Role="tblSite" EntitySet="tblSites" />
+            <End Role="tblSiteAudit" EntitySet="tblSiteAudits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSiteAudit_tblUsers" Association="ChcDBModel.FK_tblSiteAudit_tblUsers">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblSiteAudit" EntitySet="tblSiteAudits" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblRole">
           <Key>
@@ -172,6 +224,7 @@
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblUserAudits" Relationship="ChcDBModel.FK_tblUserAudit_tblUsers" FromRole="tblUser" ToRole="tblUserAudit" />
           <NavigationProperty Name="tblUserAudits1" Relationship="ChcDBModel.FK_tblUserAudit_tblUsers1" FromRole="tblUser" ToRole="tblUserAudit" />
+          <NavigationProperty Name="tblSiteAudits" Relationship="ChcDBModel.FK_tblSiteAudit_tblUsers" FromRole="tblUser" ToRole="tblSiteAudit" />
         </EntityType>
         <Association Name="FK_Users_Roles">
           <End Type="ChcDBModel.tblRole" Role="tblRole" Multiplicity="1" />
@@ -244,6 +297,7 @@
           <Property Name="ActionDetails" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblSICLookup" Relationship="ChcDBModel.FK_tblSites_tblSICLookup" FromRole="tblSite" ToRole="tblSICLookup" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblSiteAudits" Relationship="ChcDBModel.FK_tblSiteAudit_tblSites" FromRole="tblSite" ToRole="tblSiteAudit" />
         </EntityType>
         <Association Name="FK_tblSites_tblSICLookup">
           <End Type="ChcDBModel.tblSICLookup" Role="tblSICLookup" Multiplicity="1" />
@@ -254,6 +308,42 @@
             </Principal>
             <Dependent Role="tblSite">
               <PropertyRef Name="SICcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblSiteAudit">
+          <Key>
+            <PropertyRef Name="SiteAuditID" />
+          </Key>
+          <Property Name="SiteAuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Event" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblSite" Relationship="ChcDBModel.FK_tblSiteAudit_tblSites" FromRole="tblSiteAudit" ToRole="tblSite" />
+          <NavigationProperty Name="tblUser" Relationship="ChcDBModel.FK_tblSiteAudit_tblUsers" FromRole="tblSiteAudit" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK_tblSiteAudit_tblSites">
+          <End Type="ChcDBModel.tblSite" Role="tblSite" Multiplicity="1" />
+          <End Type="ChcDBModel.tblSiteAudit" Role="tblSiteAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="tblSiteAudit">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSiteAudit_tblUsers">
+          <End Type="ChcDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="ChcDBModel.tblSiteAudit" Role="tblSiteAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblSiteAudit">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -314,6 +404,17 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="SiteName" ColumnName="SiteName" />
                 <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSiteAudits">
+            <EntityTypeMapping TypeName="ChcDBModel.tblSiteAudit">
+              <MappingFragment StoreEntitySet="tblSiteAudit">
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
+                <ScalarProperty Name="SiteAuditID" ColumnName="SiteAuditID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

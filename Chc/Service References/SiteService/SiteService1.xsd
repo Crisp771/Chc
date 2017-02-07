@@ -34,4 +34,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Site" nillable="true" type="tns:Site" />
+  <xs:complexType name="ArrayOfSiteAudit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SiteAudit" nillable="true" type="tns:SiteAudit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSiteAudit" nillable="true" type="tns:ArrayOfSiteAudit" />
+  <xs:complexType name="SiteAudit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Event" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SiteAuditID" type="xs:int" />
+      <xs:element minOccurs="0" name="SiteID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SiteAudit" nillable="true" type="tns:SiteAudit" />
 </xs:schema>

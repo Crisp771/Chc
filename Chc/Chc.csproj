@@ -1698,6 +1698,9 @@
     <Content Include="Service References\SiteService\Chc.SiteService.Site.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\SiteService\Chc.SiteService.SiteAudit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\SiteService\SiteService.disco" />
     <None Include="Service References\SiteService\configuration91.svcinfo" />
     <None Include="Service References\SiteService\configuration.svcinfo" />

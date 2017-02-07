@@ -92,7 +92,7 @@ namespace ChcObjects
             return _context.tblSites.ToList().Select(s => new Site(s)).ToList();
         }
 
-        public Site CreateSite(Site site)
+        public Site CreateSite(Site site, int userId)
         {
             var newsite = new tblSite()
             {
@@ -103,13 +103,24 @@ namespace ChcObjects
                 SiteID = site.SiteID,
                 SiteName = site.SiteName,
                 Deleted = site.Deleted
-        };
+            };
             _context.tblSites.Add(newsite);
             _context.SaveChanges();
+
+            var audit = new SiteAudit()
+            {
+                Event = string.Format("Site {1} created with id {0}", newsite.SiteID, newsite.SiteName),
+                EventDateTime = DateTime.Now,
+                SiteID = newsite.SiteID,
+                UserID = userId
+            };
+
+            audit.Audit();
+
             return new Site(newsite);
         }
 
-        public Site UpdateSite(Site site)
+        public Site UpdateSite(Site site, int userId)
         {
             var oldsite = _context.tblSites.Find(site.SiteID);
 
@@ -122,6 +133,16 @@ namespace ChcObjects
             oldsite.Deleted = site.Deleted;
 
             _context.SaveChanges();
+
+            var audit = new SiteAudit()
+            {
+                Event = string.Format("Site {0} updated.", oldsite.SiteName),
+                EventDateTime = DateTime.Now,
+                SiteID = oldsite.SiteID,
+                UserID = userId
+            };
+
+            audit.Audit();
 
             return new Site(oldsite);
         }

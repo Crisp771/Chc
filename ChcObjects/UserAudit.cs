@@ -61,7 +61,7 @@ namespace ChcObjects
             var t = new tblUserAudit();
 
             t.UserID = this.UserID;
-            t.UserAuditID = this.UserAuditID;
+            //t.UserAuditID = this.UserAuditID;
             t.EventDateTime = this.EventDateTime;
             t.Event = this.Event;
             t.CarriedOutByUserID = this.CarriedOutByUserID;

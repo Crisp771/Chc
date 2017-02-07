@@ -43,6 +43,12 @@
   <wsdl:message name="ISiteService_UpdateSite_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateSiteResponse" />
   </wsdl:message>
+  <wsdl:message name="ISiteService_GetSiteAudit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteAudit" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSiteAudit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteAuditResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISiteService">
     <wsdl:operation name="GetSICLookups">
       <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/GetSICLookups" message="tns:ISiteService_GetSICLookups_InputMessage" />
@@ -67,6 +73,10 @@
     <wsdl:operation name="UpdateSite">
       <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/UpdateSite" message="tns:ISiteService_UpdateSite_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/UpdateSiteResponse" message="tns:ISiteService_UpdateSite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteAudit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/GetSiteAudit" message="tns:ISiteService_GetSiteAudit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/GetSiteAuditResponse" message="tns:ISiteService_GetSiteAudit_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISiteService" type="tns:ISiteService">
@@ -118,6 +128,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateSite">
       <soap:operation soapAction="http://tempuri.org/ISiteService/UpdateSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteAudit">
+      <soap:operation soapAction="http://tempuri.org/ISiteService/GetSiteAudit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

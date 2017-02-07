@@ -19,7 +19,11 @@ public interface ISiteService
     [OperationContract]
     Site GetSiteById(int id);
     [OperationContract]
-    Site CreateSite(Site site);
+    Site CreateSite(Site site, int userId);
     [OperationContract]
-    Site UpdateSite(Site site);
+    Site UpdateSite(Site site, int userId);
+    [OperationContract]
+    IList<SiteAudit> GetSiteAudit(Site site);
+    //[OperationContract]
+    //SiteAudit CreateSiteAudit(SiteAudit siteAudit);
 }

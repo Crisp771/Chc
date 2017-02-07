@@ -10,5 +10,6 @@ namespace ChcDB
         DbSet<tblUserAudit> tblUserAudits { get; set; }
         DbSet<tblSICLookup> tblSICLookups { get; set; }
         DbSet<tblSite> tblSites { get; set; }
+        DbSet<tblSiteAudit> tblSiteAudits { get; set; }
     }
 }

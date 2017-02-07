@@ -1,4 +1,5 @@
-﻿using Chc.SiteService;
+﻿using Chc.Models;
+using Chc.SiteService;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System;
@@ -28,7 +29,7 @@ namespace Chc.Controllers
 
         public JsonResult CreateSite(Site site)
         {
-            return Json(new SiteServiceClient().CreateSite(site), JsonRequestBehavior.AllowGet);
+            return Json(new SiteServiceClient().CreateSite(site, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetSites([DataSourceRequest] DataSourceRequest request)
         {
@@ -37,13 +38,12 @@ namespace Chc.Controllers
         }
         public JsonResult UpdateSite(Site site)
         {
-            return Json(new SiteServiceClient().UpdateSite(site), JsonRequestBehavior.AllowGet);
+            return Json(new SiteServiceClient().UpdateSite(site, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
         public JsonResult DeleteSite(Site site)
         {
             site.Deleted = true;
-            
-            return Json(new SiteServiceClient().UpdateSite(site), JsonRequestBehavior.AllowGet);
+            return Json(new SiteServiceClient().UpdateSite(site, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
     }
 }

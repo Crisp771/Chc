@@ -69,6 +69,7 @@
       <DependentUpon>ChcWasteManagementModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="IChcDBEntities.cs" />
+    <Compile Include="ISiteAudit.cs" />
     <Compile Include="IRole.cs" />
     <Compile Include="ISICLookup.cs" />
     <Compile Include="ISite.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Role.cs" />
     <Compile Include="SICLookup.cs" />
     <Compile Include="Site.cs" />
+    <Compile Include="SiteAudit.cs" />
     <Compile Include="tblRole.cs">
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
@@ -85,6 +87,9 @@
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSite.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSiteAudit.cs">
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUser.cs">

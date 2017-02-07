@@ -56,6 +56,7 @@
     <Compile Include="Role.cs" />
     <Compile Include="SICLookup.cs" />
     <Compile Include="Site.cs" />
+    <Compile Include="SiteAudit.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserAudit.cs" />
   </ItemGroup>

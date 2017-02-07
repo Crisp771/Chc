@@ -19,6 +19,7 @@ namespace ChcDB
         {
             this.tblUserAudits = new HashSet<tblUserAudit>();
             this.tblUserAudits1 = new HashSet<tblUserAudit>();
+            this.tblSiteAudits = new HashSet<tblSiteAudit>();
         }
     
         public int UserID { get; set; }
@@ -32,5 +33,7 @@ namespace ChcDB
         public virtual ICollection<tblUserAudit> tblUserAudits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUserAudit> tblUserAudits1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSiteAudit> tblSiteAudits { get; set; }
     }
 }

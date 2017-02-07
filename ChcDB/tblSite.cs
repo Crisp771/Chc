@@ -14,6 +14,12 @@ namespace ChcDB
     
     public partial class tblSite
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblSite()
+        {
+            this.tblSiteAudits = new HashSet<tblSiteAudit>();
+        }
+    
         public int SiteID { get; set; }
         public string SiteName { get; set; }
         public string Address { get; set; }
@@ -23,5 +29,7 @@ namespace ChcDB
         public bool Deleted { get; set; }
     
         public virtual tblSICLookup tblSICLookup { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSiteAudit> tblSiteAudits { get; set; }
     }
 }
