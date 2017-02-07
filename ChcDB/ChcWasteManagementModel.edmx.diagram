@@ -11,6 +11,9 @@
         <EntityTypeShape EntityType="ChcDBModel.tblUserAudit" Width="1.5" PointX="5.25" PointY="1" />
         <AssociationConnector Association="ChcDBModel.FK_tblUserAudit_tblUsers" />
         <AssociationConnector Association="ChcDBModel.FK_tblUserAudit_tblUsers1" />
+        <EntityTypeShape EntityType="ChcDBModel.tblSICLookup" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="ChcDBModel.tblSite" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="ChcDBModel.FK_tblSites_tblSICLookup" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

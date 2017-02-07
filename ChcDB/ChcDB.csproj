@@ -70,11 +70,21 @@
     </Compile>
     <Compile Include="IChcDBEntities.cs" />
     <Compile Include="IRole.cs" />
+    <Compile Include="ISICLookup.cs" />
+    <Compile Include="ISite.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="IUserAudit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="SICLookup.cs" />
+    <Compile Include="Site.cs" />
     <Compile Include="tblRole.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSICLookup.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSite.cs">
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUser.cs">

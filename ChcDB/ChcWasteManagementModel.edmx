@@ -12,6 +12,27 @@
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Rolename" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblSICLookup">
+          <Key>
+            <PropertyRef Name="SIC" />
+          </Key>
+          <Property Name="Division" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="MajorGroup" Type="int" Nullable="false" />
+          <Property Name="IndustryGroup" Type="int" Nullable="false" />
+          <Property Name="SIC" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tblSites">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="SICcode" Type="int" Nullable="false" />
+          <Property Name="ContactDetails" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ActionDetails" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblUserAudit">
           <Key>
             <PropertyRef Name="UserAuditID" />
@@ -32,6 +53,18 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_tblSites_tblSICLookup">
+          <End Role="tblSICLookup" Type="Self.tblSICLookup" Multiplicity="1" />
+          <End Role="tblSites" Type="Self.tblSites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSICLookup">
+              <PropertyRef Name="SIC" />
+            </Principal>
+            <Dependent Role="tblSites">
+              <PropertyRef Name="SICcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblUserAudit_tblUsers">
           <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
           <End Role="tblUserAudit" Type="Self.tblUserAudit" Multiplicity="*" />
@@ -70,8 +103,14 @@
         </Association>
         <EntityContainer Name="ChcDBModelStoreContainer">
           <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSICLookup" EntityType="Self.tblSICLookup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSites" EntityType="Self.tblSites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserAudit" EntityType="Self.tblUserAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblSites_tblSICLookup" Association="Self.FK_tblSites_tblSICLookup">
+            <End Role="tblSICLookup" EntitySet="tblSICLookup" />
+            <End Role="tblSites" EntitySet="tblSites" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblUserAudit_tblUsers" Association="Self.FK_tblUserAudit_tblUsers">
             <End Role="tblUsers" EntitySet="tblUsers" />
             <End Role="tblUserAudit" EntitySet="tblUserAudit" />
@@ -104,6 +143,12 @@
           <AssociationSet Name="FK_tblUserAudit_tblUsers1" Association="ChcDBModel.FK_tblUserAudit_tblUsers1">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblUserAudit" EntitySet="tblUserAudits" />
+          </AssociationSet>
+          <EntitySet Name="tblSICLookups" EntityType="ChcDBModel.tblSICLookup" />
+          <EntitySet Name="tblSites" EntityType="ChcDBModel.tblSite" />
+          <AssociationSet Name="FK_tblSites_tblSICLookup" Association="ChcDBModel.FK_tblSites_tblSICLookup">
+            <End Role="tblSICLookup" EntitySet="tblSICLookups" />
+            <End Role="tblSite" EntitySet="tblSites" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblRole">
@@ -175,6 +220,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblSICLookup">
+          <Key>
+            <PropertyRef Name="SIC" />
+          </Key>
+          <Property Name="Division" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MajorGroup" Type="Int32" Nullable="false" />
+          <Property Name="IndustryGroup" Type="Int32" Nullable="false" />
+          <Property Name="SIC" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSites" Relationship="ChcDBModel.FK_tblSites_tblSICLookup" FromRole="tblSICLookup" ToRole="tblSite" />
+        </EntityType>
+        <EntityType Name="tblSite">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SICcode" Type="Int32" Nullable="false" />
+          <Property Name="ContactDetails" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ActionDetails" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSICLookup" Relationship="ChcDBModel.FK_tblSites_tblSICLookup" FromRole="tblSite" ToRole="tblSICLookup" />
+        </EntityType>
+        <Association Name="FK_tblSites_tblSICLookup">
+          <End Type="ChcDBModel.tblSICLookup" Role="tblSICLookup" Multiplicity="1" />
+          <End Type="ChcDBModel.tblSite" Role="tblSite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSICLookup">
+              <PropertyRef Name="SIC" />
+            </Principal>
+            <Dependent Role="tblSite">
+              <PropertyRef Name="SICcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -208,6 +288,29 @@
                 <ScalarProperty Name="Event" ColumnName="Event" />
                 <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
                 <ScalarProperty Name="UserAuditID" ColumnName="UserAuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSICLookups">
+            <EntityTypeMapping TypeName="ChcDBModel.tblSICLookup">
+              <MappingFragment StoreEntitySet="tblSICLookup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SIC" ColumnName="SIC" />
+                <ScalarProperty Name="IndustryGroup" ColumnName="IndustryGroup" />
+                <ScalarProperty Name="MajorGroup" ColumnName="MajorGroup" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSites">
+            <EntityTypeMapping TypeName="ChcDBModel.tblSite">
+              <MappingFragment StoreEntitySet="tblSites">
+                <ScalarProperty Name="ActionDetails" ColumnName="ActionDetails" />
+                <ScalarProperty Name="ContactDetails" ColumnName="ContactDetails" />
+                <ScalarProperty Name="SICcode" ColumnName="SICcode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -8,5 +8,7 @@ namespace ChcDB
         DbSet<tblRole> tblRoles { get; set; }
         DbSet<tblUser> tblUsers { get; set; }
         DbSet<tblUserAudit> tblUserAudits { get; set; }
+        DbSet<tblSICLookup> tblSICLookups { get; set; }
+        DbSet<tblSite> tblSites { get; set; }
     }
 }
