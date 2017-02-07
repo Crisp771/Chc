@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Chc.Models;
 using System.Web.Security;
 using Chc.UserService;
+using System.Web.Script.Serialization;
 
 namespace Chc.Controllers
 {
@@ -91,8 +92,6 @@ namespace Chc.Controllers
             //        ModelState.AddModelError("", "Invalid login attempt.");
             //        return View(model);
             //}
-
-            //var sresult = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             using (var us = new UserService.UserServiceClient())
             {
                 //var result = (SignInStatus) us.ValidateUser(model);
@@ -112,11 +111,25 @@ namespace Chc.Controllers
 
                 if (result != null)
                 {
-                    FormsAuthentication.SetAuthCookie(result.UserID.ToString(), model.RememberMe);
-                    //Response.Cookies.Add(new HttpCookie("RoleId", result.RoleID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
-                    //Response.Cookies.Add(new HttpCookie("UserId", result.UserID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
-                    //System.Diagnostics.Debug.WriteLine("Is user authenticated? {0}", User.Identity.IsAuthenticated);
-                    //System.Diagnostics.Debug.WriteLine("Username :  {0}", User.Identity.GetUserName());
+                    CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
+                    serializeModel.Id = result.UserID;
+                    serializeModel.FirstName = result.Username;
+
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+                    string userData = serializer.Serialize(serializeModel);
+
+                    FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+                             1,
+                             result.Username,
+                             DateTime.Now,
+                             DateTime.Now.AddMinutes(15),
+                             false,
+                             userData);
+
+                    string encTicket = FormsAuthentication.Encrypt(authTicket);
+                    HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+                    Response.Cookies.Add(faCookie);
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -125,6 +138,40 @@ namespace Chc.Controllers
                     return View(model);
                 }
             }
+
+            //var sresult = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
+            //using (var us = new UserService.UserServiceClient())
+            //{
+            //    //var result = (SignInStatus) us.ValidateUser(model);
+
+            //    //var user = new ApplicationUser() { UserName = model.Username };
+            //    //var uresult = await UserManager.CreateAsync(user, model.Password);
+
+            //    var hash = System.Security.Cryptography.SHA1.Create();
+            //    var encoder = new System.Text.ASCIIEncoding();
+            //    var combined = encoder.GetBytes(model.Password ?? "");
+            //    var hashvalue = BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
+
+            //    model.Password = hashvalue;
+
+            //    var result = us.ValidateUserByUsernameAndPassword(model);
+
+
+            //    if (result != null)
+            //    {
+            //        FormsAuthentication.SetAuthCookie(result.UserID.ToString(), model.RememberMe);
+            //        //Response.Cookies.Add(new HttpCookie("RoleId", result.RoleID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
+            //        //Response.Cookies.Add(new HttpCookie("UserId", result.UserID.ToString()) { Expires = DateTime.Now.AddDays(-1) });
+            //        //System.Diagnostics.Debug.WriteLine("Is user authenticated? {0}", User.Identity.IsAuthenticated);
+            //        //System.Diagnostics.Debug.WriteLine("Username :  {0}", User.Identity.GetUserName());
+            //        return RedirectToLocal(returnUrl);
+            //    }
+            //    else
+            //    {
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //    }
+            //}
         }
 
         //

@@ -1,4 +1,5 @@
-﻿using Chc.UserService;
+﻿using Chc.Models;
+using Chc.UserService;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System;
@@ -12,7 +13,7 @@ namespace Chc.Controllers
     public class UserManagementController : Controller
     {
         // GET: UserManagement
-        [Authorize(Users = "1")]
+        [Authorize(Users = "admin")]
         public ActionResult Index()
         {
             PopulateRoleLookup();
@@ -37,16 +38,12 @@ namespace Chc.Controllers
 
         public JsonResult CreateUser(User user)
         {
-            var userid = 0;
-            userid = int.Parse(HttpContext.User.Identity.Name);
-            return Json(new UserServiceClient().CreateUser(user, userid), JsonRequestBehavior.AllowGet);
+            return Json(new UserServiceClient().CreateUser(user, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult UpdateUser(User user)
         {
-            int userid = 0;
-            userid = int.Parse(HttpContext.User.Identity.Name);
-            return Json(new UserServiceClient().UpdateUser(user, userid), JsonRequestBehavior.AllowGet);
+            return Json(new UserServiceClient().UpdateUser(user, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteUser(User user)
