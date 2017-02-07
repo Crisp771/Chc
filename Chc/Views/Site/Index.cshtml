@@ -1,0 +1,33 @@
+﻿@model Chc.SiteService.Site
+
+@{
+    ViewBag.Title = "Sites";
+}
+
+@(Html.Kendo().Grid<TestApp.SiteService.Site>()
+    .Name("SiteGrid")
+    .Columns(c =>
+    {
+        c.Bound(b => b.SiteName);
+        //c.Bound(b => b.SICcode);
+        c.ForeignKey(b => b.SICcode, (System.Collections.IEnumerable) ViewData["SICLookupData"], "SIC", "Description");
+        c.Bound(b => b.Address);
+        c.Bound(b => b.ContactDetails);
+        c.Bound(b => b.ActionDetails);
+        c.Command(b => { b.Edit(); b.Destroy(); });
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Model(model => { model.Id(s => s.SiteID); })
+        .Create(update => update.Action("CreateSite", "Site"))
+        .Read(read => read.Action("GetSites", "Site"))
+        .Update(update => update.Action("UpdateSite", "Site"))
+        .Destroy(update => update.Action("DeleteSite", "Site"))
+    )
+)

@@ -32,6 +32,7 @@
           <Property Name="SICcode" Type="int" Nullable="false" />
           <Property Name="ContactDetails" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ActionDetails" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUserAudit">
           <Key>
@@ -242,6 +243,7 @@
           <Property Name="ContactDetails" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ActionDetails" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblSICLookup" Relationship="ChcDBModel.FK_tblSites_tblSICLookup" FromRole="tblSite" ToRole="tblSICLookup" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblSites_tblSICLookup">
           <End Type="ChcDBModel.tblSICLookup" Role="tblSICLookup" Multiplicity="1" />
@@ -305,6 +307,7 @@
           <EntitySetMapping Name="tblSites">
             <EntityTypeMapping TypeName="ChcDBModel.tblSite">
               <MappingFragment StoreEntitySet="tblSites">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="ActionDetails" ColumnName="ActionDetails" />
                 <ScalarProperty Name="ContactDetails" ColumnName="ContactDetails" />
                 <ScalarProperty Name="SICcode" ColumnName="SICcode" />

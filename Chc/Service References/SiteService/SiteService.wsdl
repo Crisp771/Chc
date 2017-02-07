@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SiteService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:64387/SiteService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:64387/SiteService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:64387/SiteService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ChcObjects" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISiteService_GetSICLookups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSICLookups" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSICLookups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSICLookupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSICById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSICById" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSICById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSICByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSites_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSites" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSites_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSitesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSiteById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteById" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_GetSiteById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_CreateSite_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSite" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_CreateSite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_UpdateSite_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSite" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_UpdateSite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSiteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISiteService">
+    <wsdl:operation name="GetSICLookups">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/GetSICLookups" message="tns:ISiteService_GetSICLookups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/GetSICLookupsResponse" message="tns:ISiteService_GetSICLookups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSICById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/GetSICById" message="tns:ISiteService_GetSICById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/GetSICByIdResponse" message="tns:ISiteService_GetSICById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSites">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/GetSites" message="tns:ISiteService_GetSites_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/GetSitesResponse" message="tns:ISiteService_GetSites_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/GetSiteById" message="tns:ISiteService_GetSiteById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/GetSiteByIdResponse" message="tns:ISiteService_GetSiteById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSite">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/CreateSite" message="tns:ISiteService_CreateSite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/CreateSiteResponse" message="tns:ISiteService_CreateSite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSite">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISiteService/UpdateSite" message="tns:ISiteService_UpdateSite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISiteService/UpdateSiteResponse" message="tns:ISiteService_UpdateSite_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISiteService" type="tns:ISiteService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSICLookups">
+      <soap:operation soapAction="http://tempuri.org/ISiteService/GetSICLookups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSICById">
+      <soap:operation soapAction="http://tempuri.org/ISiteService/GetSICById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSites">
+      <soap:operation soapAction="http://tempuri.org/ISiteService/GetSites" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteById">
+      <soap:operation soapAction="http://tempuri.org/ISiteService/GetSiteById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSite">
+      <soap:operation soapAction="http://tempuri.org/ISiteService/CreateSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSite">
+      <soap:operation soapAction="http://tempuri.org/ISiteService/UpdateSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SiteService">
+    <wsdl:port name="BasicHttpBinding_ISiteService" binding="tns:BasicHttpBinding_ISiteService">
+      <soap:address location="http://localhost:64387/SiteService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

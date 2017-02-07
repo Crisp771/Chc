@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,6 +188,11 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SiteService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\UserService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1686,6 +1692,19 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Service References\SiteService\Chc.SiteService.SICLookup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SiteService\Chc.SiteService.Site.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\SiteService\SiteService.disco" />
+    <None Include="Service References\SiteService\configuration91.svcinfo" />
+    <None Include="Service References\SiteService\configuration.svcinfo" />
+    <None Include="Service References\SiteService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\UserService\Chc.UserService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1695,6 +1714,16 @@
     <Content Include="Service References\UserService\Chc.UserService.UserAudit.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\SiteService\SiteService.wsdl" />
+    <None Include="Service References\SiteService\SiteService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SiteService\SiteService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SiteService\SiteService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\UserService\UserService.disco" />
     <None Include="Service References\UserService\configuration91.svcinfo" />
     <None Include="Service References\UserService\configuration.svcinfo" />
@@ -1948,6 +1977,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\UserManagement\Index.cshtml" />
+    <Content Include="Views\Site\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1971,6 +2001,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SiteService\" />
     <WCFMetadataStorage Include="Service References\UserService\" />
   </ItemGroup>
   <PropertyGroup>

@@ -8,5 +8,6 @@
         int SICcode { get; set; }
         string ContactDetails { get; set; }
         string ActionDetails { get; set; }
+        bool Deleted { get; set; }
     }
 }

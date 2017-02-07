@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ChcObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ChcObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfSICLookup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SICLookup" nillable="true" type="tns:SICLookup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSICLookup" nillable="true" type="tns:ArrayOfSICLookup" />
+  <xs:complexType name="SICLookup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Division" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IndustryGroup" type="xs:int" />
+      <xs:element minOccurs="0" name="MajorGroup" type="xs:int" />
+      <xs:element minOccurs="0" name="SIC" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SICLookup" nillable="true" type="tns:SICLookup" />
+  <xs:complexType name="ArrayOfSite">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Site" nillable="true" type="tns:Site" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSite" nillable="true" type="tns:ArrayOfSite" />
+  <xs:complexType name="Site">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActionDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SICcode" type="xs:int" />
+      <xs:element minOccurs="0" name="SiteID" type="xs:int" />
+      <xs:element minOccurs="0" name="SiteName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Site" nillable="true" type="tns:Site" />
+</xs:schema>

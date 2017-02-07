@@ -20,6 +20,7 @@ namespace ChcDB
         public int SICcode { get; set; }
         public string ContactDetails { get; set; }
         public string ActionDetails { get; set; }
+        public bool Deleted { get; set; }
     
         public virtual tblSICLookup tblSICLookup { get; set; }
     }
