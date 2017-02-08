@@ -20,12 +20,12 @@ public class BookingService : IBookingService
         return new Service().GetServices();
     }
 
-    public Service CreateService(Service service)
+    public Service CreateService(Service service, int userId)
     {
         return new Service().CreateService(service);
     }
 
-    public Service UpdateService(Service service)
+    public Service UpdateService(Service service, int userId)
     {
         return new Service().UpdateService(service);
     }

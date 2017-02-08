@@ -511,16 +511,16 @@ namespace Chc.BookingService {
         System.Threading.Tasks.Task<Chc.BookingService.Service[]> GetServicesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateService", ReplyAction="http://tempuri.org/IBookingService/CreateServiceResponse")]
-        Chc.BookingService.Service CreateService(Chc.BookingService.Service service);
+        Chc.BookingService.Service CreateService(Chc.BookingService.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateService", ReplyAction="http://tempuri.org/IBookingService/CreateServiceResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Service> CreateServiceAsync(Chc.BookingService.Service service);
+        System.Threading.Tasks.Task<Chc.BookingService.Service> CreateServiceAsync(Chc.BookingService.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateService", ReplyAction="http://tempuri.org/IBookingService/UpdateServiceResponse")]
-        Chc.BookingService.Service UpdateService(Chc.BookingService.Service service);
+        Chc.BookingService.Service UpdateService(Chc.BookingService.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateService", ReplyAction="http://tempuri.org/IBookingService/UpdateServiceResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Service> UpdateServiceAsync(Chc.BookingService.Service service);
+        System.Threading.Tasks.Task<Chc.BookingService.Service> UpdateServiceAsync(Chc.BookingService.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetContainers", ReplyAction="http://tempuri.org/IBookingService/GetContainersResponse")]
         Chc.BookingService.Container[] GetContainers();
@@ -590,20 +590,20 @@ namespace Chc.BookingService {
             return base.Channel.GetServicesAsync();
         }
         
-        public Chc.BookingService.Service CreateService(Chc.BookingService.Service service) {
-            return base.Channel.CreateService(service);
+        public Chc.BookingService.Service CreateService(Chc.BookingService.Service service, int userId) {
+            return base.Channel.CreateService(service, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Service> CreateServiceAsync(Chc.BookingService.Service service) {
-            return base.Channel.CreateServiceAsync(service);
+        public System.Threading.Tasks.Task<Chc.BookingService.Service> CreateServiceAsync(Chc.BookingService.Service service, int userId) {
+            return base.Channel.CreateServiceAsync(service, userId);
         }
         
-        public Chc.BookingService.Service UpdateService(Chc.BookingService.Service service) {
-            return base.Channel.UpdateService(service);
+        public Chc.BookingService.Service UpdateService(Chc.BookingService.Service service, int userId) {
+            return base.Channel.UpdateService(service, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Service> UpdateServiceAsync(Chc.BookingService.Service service) {
-            return base.Channel.UpdateServiceAsync(service);
+        public System.Threading.Tasks.Task<Chc.BookingService.Service> UpdateServiceAsync(Chc.BookingService.Service service, int userId) {
+            return base.Channel.UpdateServiceAsync(service, userId);
         }
         
         public Chc.BookingService.Container[] GetContainers() {

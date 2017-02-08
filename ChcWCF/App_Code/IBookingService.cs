@@ -16,9 +16,9 @@ public interface IBookingService
     [OperationContract]
     IList<Service> GetServices();
     [OperationContract]
-    Service CreateService(Service service);
+    Service CreateService(Service service, int userId);
     [OperationContract]
-    Service UpdateService(Service service);
+    Service UpdateService(Service service, int userId);
     [OperationContract]
     IList<Container> GetContainers();
     [OperationContract]
