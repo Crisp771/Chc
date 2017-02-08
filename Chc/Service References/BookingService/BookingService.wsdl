@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BookingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:64387/BookingService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:64387/BookingService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:64387/BookingService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ChcObjects" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBookingService_GetServiceById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceById" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetServiceById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServices" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_CreateService_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateService" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_CreateService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_UpdateService_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateService" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_UpdateService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetContainers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContainers" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetContainers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContainersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetCarriers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarriers" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetCarriers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarriersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetScheduleFrequncies_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetScheduleFrequncies" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetScheduleFrequncies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetScheduleFrequnciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetDisposalLocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDisposalLocations" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetDisposalLocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDisposalLocationsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBookingService">
+    <wsdl:operation name="GetServiceById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetServiceById" message="tns:IBookingService_GetServiceById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetServiceByIdResponse" message="tns:IBookingService_GetServiceById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetServices" message="tns:IBookingService_GetServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetServicesResponse" message="tns:IBookingService_GetServices_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/CreateService" message="tns:IBookingService_CreateService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/CreateServiceResponse" message="tns:IBookingService_CreateService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/UpdateService" message="tns:IBookingService_UpdateService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/UpdateServiceResponse" message="tns:IBookingService_UpdateService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContainers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetContainers" message="tns:IBookingService_GetContainers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetContainersResponse" message="tns:IBookingService_GetContainers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarriers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetCarriers" message="tns:IBookingService_GetCarriers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetCarriersResponse" message="tns:IBookingService_GetCarriers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleFrequncies">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetScheduleFrequncies" message="tns:IBookingService_GetScheduleFrequncies_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetScheduleFrequnciesResponse" message="tns:IBookingService_GetScheduleFrequncies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDisposalLocations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetDisposalLocations" message="tns:IBookingService_GetDisposalLocations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetDisposalLocationsResponse" message="tns:IBookingService_GetDisposalLocations_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBookingService" type="tns:IBookingService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceById">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetServiceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateService">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/CreateService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateService">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/UpdateService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContainers">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetContainers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarriers">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetCarriers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleFrequncies">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetScheduleFrequncies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDisposalLocations">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetDisposalLocations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BookingService">
+    <wsdl:port name="BasicHttpBinding_IBookingService" binding="tns:BasicHttpBinding_IBookingService">
+      <soap:address location="http://localhost:64387/BookingService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

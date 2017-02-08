@@ -51,9 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carrier.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="DataAccessBase.cs" />
+    <Compile Include="DisposalLocation.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="ScheduleFrequency.cs" />
+    <Compile Include="Service.cs" />
     <Compile Include="SICLookup.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="SiteAudit.cs" />
