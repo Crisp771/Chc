@@ -17,6 +17,16 @@
         <EntityTypeShape EntityType="ChcDBModel.tblSiteAudit" Width="1.5" PointX="5.25" PointY="4.125" />
         <AssociationConnector Association="ChcDBModel.FK_tblSiteAudit_tblSites" />
         <AssociationConnector Association="ChcDBModel.FK_tblSiteAudit_tblUsers" />
+        <EntityTypeShape EntityType="ChcDBModel.tblCarrier" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="ChcDBModel.tblContainer" Width="1.5" PointX="3" PointY="13.875" />
+        <EntityTypeShape EntityType="ChcDBModel.tblDisposalLocation" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="ChcDBModel.tblScheduleFrequency" Width="1.5" PointX="3" PointY="16.25" />
+        <EntityTypeShape EntityType="ChcDBModel.tblService" Width="1.5" PointX="5.25" PointY="7.25" />
+        <AssociationConnector Association="ChcDBModel.FK_tblServices_tblCarriers" />
+        <AssociationConnector Association="ChcDBModel.FK_tblServices_tblContainers" />
+        <AssociationConnector Association="ChcDBModel.FK_tblServices_tblDisposalLocations" />
+        <AssociationConnector Association="ChcDBModel.FK_tblServices_tblScheduleFrequencies" />
+        <AssociationConnector Association="ChcDBModel.FK_tblServices_tblSites" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

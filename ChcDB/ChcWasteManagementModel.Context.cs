@@ -31,5 +31,10 @@ namespace ChcDB
         public virtual DbSet<tblSICLookup> tblSICLookups { get; set; }
         public virtual DbSet<tblSite> tblSites { get; set; }
         public virtual DbSet<tblSiteAudit> tblSiteAudits { get; set; }
+        public virtual DbSet<tblCarrier> tblCarriers { get; set; }
+        public virtual DbSet<tblContainer> tblContainers { get; set; }
+        public virtual DbSet<tblDisposalLocation> tblDisposalLocations { get; set; }
+        public virtual DbSet<tblScheduleFrequency> tblScheduleFrequencies { get; set; }
+        public virtual DbSet<tblService> tblServices { get; set; }
     }
 }

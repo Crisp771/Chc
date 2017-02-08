@@ -12,26 +12,17 @@ namespace ChcDB
     using System;
     using System.Collections.Generic;
     
-    public partial class tblSite
+    public partial class tblCarrier
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblSite()
+        public tblCarrier()
         {
-            this.tblSiteAudits = new HashSet<tblSiteAudit>();
             this.tblServices = new HashSet<tblService>();
         }
     
-        public int SiteID { get; set; }
-        public string SiteName { get; set; }
-        public string Address { get; set; }
-        public int SICcode { get; set; }
-        public string ContactDetails { get; set; }
-        public string ActionDetails { get; set; }
-        public bool Deleted { get; set; }
+        public int CarrierID { get; set; }
+        public string CarrierName { get; set; }
     
-        public virtual tblSICLookup tblSICLookup { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblSiteAudit> tblSiteAudits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblService> tblServices { get; set; }
     }

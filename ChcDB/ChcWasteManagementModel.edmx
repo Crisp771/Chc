@@ -5,12 +5,58 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ChcDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCarriers">
+          <Key>
+            <PropertyRef Name="CarrierID" />
+          </Key>
+          <Property Name="CarrierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarrierName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblContainers">
+          <Key>
+            <PropertyRef Name="ContainerID" />
+          </Key>
+          <Property Name="ContainerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContainerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDisposalLocations">
+          <Key>
+            <PropertyRef Name="DisposalLocationID" />
+          </Key>
+          <Property Name="DisposalLocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisposalLocationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblRoles">
           <Key>
             <PropertyRef Name="RoleID" />
           </Key>
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Rolename" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblScheduleFrequencies">
+          <Key>
+            <PropertyRef Name="ScheduleFrequencyID" />
+          </Key>
+          <Property Name="ScheduleFrequencyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FrequencyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblServices">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="ContractNumber" Type="int" Nullable="false" />
+          <Property Name="ContainerID" Type="int" Nullable="false" />
+          <Property Name="EWC" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ScheduleFrequencyID" Type="int" Nullable="false" />
+          <Property Name="ScheduleDay" Type="int" Nullable="false" />
+          <Property Name="InPrice" Type="money" Nullable="false" />
+          <Property Name="OutPrice" Type="money" Nullable="false" />
+          <Property Name="CarrierID" Type="int" Nullable="false" />
+          <Property Name="DisposalLocationID" Type="int" Nullable="false" />
+          <Property Name="IsRecurring" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSICLookup">
           <Key>
@@ -64,6 +110,66 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_tblServices_tblCarriers">
+          <End Role="tblCarriers" Type="Self.tblCarriers" Multiplicity="1" />
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCarriers">
+              <PropertyRef Name="CarrierID" />
+            </Principal>
+            <Dependent Role="tblServices">
+              <PropertyRef Name="CarrierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblContainers">
+          <End Role="tblContainers" Type="Self.tblContainers" Multiplicity="1" />
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContainers">
+              <PropertyRef Name="ContainerID" />
+            </Principal>
+            <Dependent Role="tblServices">
+              <PropertyRef Name="ContainerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblDisposalLocations">
+          <End Role="tblDisposalLocations" Type="Self.tblDisposalLocations" Multiplicity="1" />
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDisposalLocations">
+              <PropertyRef Name="DisposalLocationID" />
+            </Principal>
+            <Dependent Role="tblServices">
+              <PropertyRef Name="DisposalLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblScheduleFrequencies">
+          <End Role="tblScheduleFrequencies" Type="Self.tblScheduleFrequencies" Multiplicity="1" />
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblScheduleFrequencies">
+              <PropertyRef Name="ScheduleFrequencyID" />
+            </Principal>
+            <Dependent Role="tblServices">
+              <PropertyRef Name="ScheduleFrequencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblSites">
+          <End Role="tblSites" Type="Self.tblSites" Multiplicity="1" />
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSites">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="tblServices">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblSiteAudit_tblSites">
           <End Role="tblSites" Type="Self.tblSites" Multiplicity="1" />
           <End Role="tblSiteAudit" Type="Self.tblSiteAudit" Multiplicity="*" />
@@ -137,12 +243,37 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ChcDBModelStoreContainer">
+          <EntitySet Name="tblCarriers" EntityType="Self.tblCarriers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContainers" EntityType="Self.tblContainers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDisposalLocations" EntityType="Self.tblDisposalLocations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblScheduleFrequencies" EntityType="Self.tblScheduleFrequencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblServices" EntityType="Self.tblServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSICLookup" EntityType="Self.tblSICLookup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSiteAudit" EntityType="Self.tblSiteAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSites" EntityType="Self.tblSites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserAudit" EntityType="Self.tblUserAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblServices_tblCarriers" Association="Self.FK_tblServices_tblCarriers">
+            <End Role="tblCarriers" EntitySet="tblCarriers" />
+            <End Role="tblServices" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblContainers" Association="Self.FK_tblServices_tblContainers">
+            <End Role="tblContainers" EntitySet="tblContainers" />
+            <End Role="tblServices" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblDisposalLocations" Association="Self.FK_tblServices_tblDisposalLocations">
+            <End Role="tblDisposalLocations" EntitySet="tblDisposalLocations" />
+            <End Role="tblServices" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblScheduleFrequencies" Association="Self.FK_tblServices_tblScheduleFrequencies">
+            <End Role="tblScheduleFrequencies" EntitySet="tblScheduleFrequencies" />
+            <End Role="tblServices" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblSites" Association="Self.FK_tblServices_tblSites">
+            <End Role="tblSites" EntitySet="tblSites" />
+            <End Role="tblServices" EntitySet="tblServices" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblSiteAudit_tblSites" Association="Self.FK_tblSiteAudit_tblSites">
             <End Role="tblSites" EntitySet="tblSites" />
             <End Role="tblSiteAudit" EntitySet="tblSiteAudit" />
@@ -202,6 +333,31 @@
           <AssociationSet Name="FK_tblSiteAudit_tblUsers" Association="ChcDBModel.FK_tblSiteAudit_tblUsers">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblSiteAudit" EntitySet="tblSiteAudits" />
+          </AssociationSet>
+          <EntitySet Name="tblCarriers" EntityType="ChcDBModel.tblCarrier" />
+          <EntitySet Name="tblContainers" EntityType="ChcDBModel.tblContainer" />
+          <EntitySet Name="tblDisposalLocations" EntityType="ChcDBModel.tblDisposalLocation" />
+          <EntitySet Name="tblScheduleFrequencies" EntityType="ChcDBModel.tblScheduleFrequency" />
+          <EntitySet Name="tblServices" EntityType="ChcDBModel.tblService" />
+          <AssociationSet Name="FK_tblServices_tblCarriers" Association="ChcDBModel.FK_tblServices_tblCarriers">
+            <End Role="tblCarrier" EntitySet="tblCarriers" />
+            <End Role="tblService" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblContainers" Association="ChcDBModel.FK_tblServices_tblContainers">
+            <End Role="tblContainer" EntitySet="tblContainers" />
+            <End Role="tblService" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblDisposalLocations" Association="ChcDBModel.FK_tblServices_tblDisposalLocations">
+            <End Role="tblDisposalLocation" EntitySet="tblDisposalLocations" />
+            <End Role="tblService" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblScheduleFrequencies" Association="ChcDBModel.FK_tblServices_tblScheduleFrequencies">
+            <End Role="tblScheduleFrequency" EntitySet="tblScheduleFrequencies" />
+            <End Role="tblService" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblSites" Association="ChcDBModel.FK_tblServices_tblSites">
+            <End Role="tblSite" EntitySet="tblSites" />
+            <End Role="tblService" EntitySet="tblServices" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblRole">
@@ -298,6 +454,7 @@
           <NavigationProperty Name="tblSICLookup" Relationship="ChcDBModel.FK_tblSites_tblSICLookup" FromRole="tblSite" ToRole="tblSICLookup" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblSiteAudits" Relationship="ChcDBModel.FK_tblSiteAudit_tblSites" FromRole="tblSite" ToRole="tblSiteAudit" />
+          <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblSites" FromRole="tblSite" ToRole="tblService" />
         </EntityType>
         <Association Name="FK_tblSites_tblSICLookup">
           <End Type="ChcDBModel.tblSICLookup" Role="tblSICLookup" Multiplicity="1" />
@@ -344,6 +501,121 @@
             </Principal>
             <Dependent Role="tblSiteAudit">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCarrier">
+          <Key>
+            <PropertyRef Name="CarrierID" />
+          </Key>
+          <Property Name="CarrierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarrierName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblCarriers" FromRole="tblCarrier" ToRole="tblService" />
+        </EntityType>
+        <EntityType Name="tblContainer">
+          <Key>
+            <PropertyRef Name="ContainerID" />
+          </Key>
+          <Property Name="ContainerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContainerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblContainers" FromRole="tblContainer" ToRole="tblService" />
+        </EntityType>
+        <EntityType Name="tblDisposalLocation">
+          <Key>
+            <PropertyRef Name="DisposalLocationID" />
+          </Key>
+          <Property Name="DisposalLocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisposalLocationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblDisposalLocations" FromRole="tblDisposalLocation" ToRole="tblService" />
+        </EntityType>
+        <EntityType Name="tblScheduleFrequency">
+          <Key>
+            <PropertyRef Name="ScheduleFrequencyID" />
+          </Key>
+          <Property Name="ScheduleFrequencyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FrequencyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblScheduleFrequencies" FromRole="tblScheduleFrequency" ToRole="tblService" />
+        </EntityType>
+        <EntityType Name="tblService">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ContractNumber" Type="Int32" Nullable="false" />
+          <Property Name="ContainerID" Type="Int32" Nullable="false" />
+          <Property Name="EWC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ScheduleFrequencyID" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleDay" Type="Int32" Nullable="false" />
+          <Property Name="InPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="OutPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CarrierID" Type="Int32" Nullable="false" />
+          <Property Name="DisposalLocationID" Type="Int32" Nullable="false" />
+          <Property Name="IsRecurring" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblCarrier" Relationship="ChcDBModel.FK_tblServices_tblCarriers" FromRole="tblService" ToRole="tblCarrier" />
+          <NavigationProperty Name="tblContainer" Relationship="ChcDBModel.FK_tblServices_tblContainers" FromRole="tblService" ToRole="tblContainer" />
+          <NavigationProperty Name="tblDisposalLocation" Relationship="ChcDBModel.FK_tblServices_tblDisposalLocations" FromRole="tblService" ToRole="tblDisposalLocation" />
+          <NavigationProperty Name="tblScheduleFrequency" Relationship="ChcDBModel.FK_tblServices_tblScheduleFrequencies" FromRole="tblService" ToRole="tblScheduleFrequency" />
+          <NavigationProperty Name="tblSite" Relationship="ChcDBModel.FK_tblServices_tblSites" FromRole="tblService" ToRole="tblSite" />
+        </EntityType>
+        <Association Name="FK_tblServices_tblCarriers">
+          <End Type="ChcDBModel.tblCarrier" Role="tblCarrier" Multiplicity="1" />
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCarrier">
+              <PropertyRef Name="CarrierID" />
+            </Principal>
+            <Dependent Role="tblService">
+              <PropertyRef Name="CarrierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblContainers">
+          <End Type="ChcDBModel.tblContainer" Role="tblContainer" Multiplicity="1" />
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContainer">
+              <PropertyRef Name="ContainerID" />
+            </Principal>
+            <Dependent Role="tblService">
+              <PropertyRef Name="ContainerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblDisposalLocations">
+          <End Type="ChcDBModel.tblDisposalLocation" Role="tblDisposalLocation" Multiplicity="1" />
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDisposalLocation">
+              <PropertyRef Name="DisposalLocationID" />
+            </Principal>
+            <Dependent Role="tblService">
+              <PropertyRef Name="DisposalLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblScheduleFrequencies">
+          <End Type="ChcDBModel.tblScheduleFrequency" Role="tblScheduleFrequency" Multiplicity="1" />
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblScheduleFrequency">
+              <PropertyRef Name="ScheduleFrequencyID" />
+            </Principal>
+            <Dependent Role="tblService">
+              <PropertyRef Name="ScheduleFrequencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblSites">
+          <End Type="ChcDBModel.tblSite" Role="tblSite" Multiplicity="1" />
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="tblService">
+              <PropertyRef Name="SiteID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -415,6 +687,57 @@
                 <ScalarProperty Name="Event" ColumnName="Event" />
                 <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
                 <ScalarProperty Name="SiteAuditID" ColumnName="SiteAuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarriers">
+            <EntityTypeMapping TypeName="ChcDBModel.tblCarrier">
+              <MappingFragment StoreEntitySet="tblCarriers">
+                <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+                <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContainers">
+            <EntityTypeMapping TypeName="ChcDBModel.tblContainer">
+              <MappingFragment StoreEntitySet="tblContainers">
+                <ScalarProperty Name="ContainerName" ColumnName="ContainerName" />
+                <ScalarProperty Name="ContainerID" ColumnName="ContainerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDisposalLocations">
+            <EntityTypeMapping TypeName="ChcDBModel.tblDisposalLocation">
+              <MappingFragment StoreEntitySet="tblDisposalLocations">
+                <ScalarProperty Name="DisposalLocationName" ColumnName="DisposalLocationName" />
+                <ScalarProperty Name="DisposalLocationID" ColumnName="DisposalLocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblScheduleFrequencies">
+            <EntityTypeMapping TypeName="ChcDBModel.tblScheduleFrequency">
+              <MappingFragment StoreEntitySet="tblScheduleFrequencies">
+                <ScalarProperty Name="FrequencyName" ColumnName="FrequencyName" />
+                <ScalarProperty Name="ScheduleFrequencyID" ColumnName="ScheduleFrequencyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblServices">
+            <EntityTypeMapping TypeName="ChcDBModel.tblService">
+              <MappingFragment StoreEntitySet="tblServices">
+                <ScalarProperty Name="IsRecurring" ColumnName="IsRecurring" />
+                <ScalarProperty Name="DisposalLocationID" ColumnName="DisposalLocationID" />
+                <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
+                <ScalarProperty Name="OutPrice" ColumnName="OutPrice" />
+                <ScalarProperty Name="InPrice" ColumnName="InPrice" />
+                <ScalarProperty Name="ScheduleDay" ColumnName="ScheduleDay" />
+                <ScalarProperty Name="ScheduleFrequencyID" ColumnName="ScheduleFrequencyID" />
+                <ScalarProperty Name="EWC" ColumnName="EWC" />
+                <ScalarProperty Name="ContainerID" ColumnName="ContainerID" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

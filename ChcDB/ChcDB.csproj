@@ -80,7 +80,22 @@
     <Compile Include="SICLookup.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="SiteAudit.cs" />
+    <Compile Include="tblCarrier.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContainer.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDisposalLocation.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblRole.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblScheduleFrequency.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblService.cs">
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSICLookup.cs">
