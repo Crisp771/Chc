@@ -16,19 +16,23 @@ namespace ChcObjects
         [DataMember]
         public int ServiceID { get; set; }
         [DataMember]
+        [UIHint("GridForeignKey")]
         public int SiteID { get; set; }
         [DataMember]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime StartDate { get; set; }
         [DataMember]
         public int ContractNumber { get; set; }
         [DataMember]
+        [UIHint("GridForeignKey")]
         public int ContainerID { get; set; }
         [DataMember]
         [DataType(DataType.Text)]
         [StringLength(50)]
         public string EWC { get; set; }
         [DataMember]
+        [UIHint("GridForeignKey")]
         public int ScheduleFrequencyID { get; set; }
         [DataMember]
         public int ScheduleDay { get; set; }
@@ -39,8 +43,10 @@ namespace ChcObjects
         [DataType(DataType.Currency)]
         public decimal OutPrice { get; set; }
         [DataMember]
+        [UIHint("GridForeignKey")]
         public int CarrierID { get; set; }
         [DataMember]
+        [UIHint("GridForeignKey")]
         public int DisposalLocationID { get; set; }
         [DataMember]
         public bool IsRecurring { get; set; }

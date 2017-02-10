@@ -6,3 +6,57 @@
 
 <h2>Index</h2>
 
+
+@(Html.Kendo().Grid<Chc.BookingService.Service>()
+    .Name("ServiceGrid")
+    .Columns(c =>
+    {
+        c.Bound(b => b.ContractNumber);
+        c.ForeignKey(b => b.CarrierID, (System.Collections.IEnumerable) ViewData["Carriers"], "CarrierID", "CarrierName");
+        c.ForeignKey(b => b.ContainerID, (System.Collections.IEnumerable) ViewData["Containers"], "ContainerID", "ContainerName");
+        c.ForeignKey(b => b.DisposalLocationID, (System.Collections.IEnumerable) ViewData["DisposalLocations"], "DisposalLocationID", "DisposalLocationName");
+        c.ForeignKey(b => b.ScheduleFrequencyID, (System.Collections.IEnumerable) ViewData["ScheduleFrequencies"], "ScheduleFrequencyID", "FrequencyName");
+        c.ForeignKey(b => b.SiteID, (System.Collections.IEnumerable) ViewData["Sites"], "SiteID", "SiteName");
+        c.Bound(b => b.EWC);
+        c.Bound(b => b.InPrice);
+        c.Bound(b => b.OutPrice);
+        c.Bound(b => b.ScheduleDay);
+        c.Bound(b => b.StartDate);
+        c.Bound(b => b.IsRecurring);
+        c.Command(b => { b.Edit(); b.Destroy(); });
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.PopUp)
+        .TemplateName("ServicePopUpEditor")
+    )
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Model(model => { model.Id(s => s.ServiceID); })
+        .Create(update => update.Action("CreateService", "Service"))
+        .Read(read => read.Action("GetServices", "Service"))
+        .Update(update => update.Action("UpdateService", "Service"))
+        .Destroy(update => update.Action("DeleteService", "SiServicete"))
+    //.DataSource(d => d
+    //    .Custom()
+    //    .Type("aspnetmvc-ajax")
+    //    .PageSize(10)
+    //    .ServerPaging(true)
+    //    .ServerSorting(true)
+    //    .ServerFiltering(true)
+    //    .Transport(transport => transport
+    //        .Create(update => update.Action("CreateService", "Service"))
+    //        .Read(read => read.Action("GetServices", "Service"))
+    //        .Update(update => update.Action("UpdateService", "Service"))
+    //        .Destroy(update => update.Action("DeleteService", "SiServicete"))
+    //    )
+    //    .Schema(s => s.)
+
+    //    )
+
+    )
+)
+

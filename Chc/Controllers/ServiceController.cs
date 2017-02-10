@@ -15,6 +15,7 @@ namespace Chc.Controllers
         // GET: Service
         public ActionResult Index()
         {
+            PopulateLookups();
             return View();
         }
 
@@ -27,6 +28,8 @@ namespace Chc.Controllers
                 ViewData["DisposalLocations"] = bs.GetDisposalLocations();
                 ViewData["ScheduleFrequencies"] = bs.GetScheduleFrequncies();
             }
+
+            ViewData["Sites"] = new SiteService.SiteServiceClient().GetSites();
         }
 
         public JsonResult CreateService(Service service)

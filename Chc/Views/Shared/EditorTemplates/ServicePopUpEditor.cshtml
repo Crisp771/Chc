@@ -1,0 +1,22 @@
+﻿@model Chc.BookingService.Service
+<br />
+@Html.HiddenFor(model => model.ServiceID)
+
+<div class="siteEditor">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.SiteID)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.SiteID)
+        @Html.ValidationMessageFor(model => model.SiteID)
+    </div>
+</div>
+<div class="startDateEditor">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.StartDate)
+    </div>
+    <div class="editor-field">
+        @(Html.Kendo().DatePickerFor(model => model.StartDate).Culture("en-GB").Format("dd/MM/yyyy"))
+        @Html.ValidationMessageFor(model => model.StartDate)
+    </div>
+</div>

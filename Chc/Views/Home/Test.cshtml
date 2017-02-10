@@ -1,0 +1,12 @@
+﻿@model Chc.BookingService.Service
+
+@{
+    ViewBag.Title = "Test";
+}
+@using (Html.BeginForm("HandleForm", "Home"))
+{
+    <h2>Test</h2>
+    @Html.EditorFor(model => model.StartDate)
+    @Html.ValidationMessageFor(model => model.StartDate)
+
+}
