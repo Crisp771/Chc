@@ -19,6 +19,13 @@
           <Property Name="ContainerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ContainerName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblContractNumber">
+          <Key>
+            <PropertyRef Name="ContractNumber" />
+          </Key>
+          <Property Name="ContractNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblDisposalLocations">
           <Key>
             <PropertyRef Name="DisposalLocationID" />
@@ -68,6 +75,7 @@
           <Property Name="DisposalLocationID" Type="int" Nullable="false" />
           <Property Name="IsRecurring" Type="bit" Nullable="false" />
           <Property Name="EWC" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSICLookup">
           <Key>
@@ -121,6 +129,18 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_tblContractNumber_tblServices">
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="1" />
+          <End Role="tblContractNumber" Type="Self.tblContractNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblServices">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="tblContractNumber">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblServices_tblCarriers">
           <End Role="tblCarriers" Type="Self.tblCarriers" Multiplicity="1" />
           <End Role="tblServices" Type="Self.tblServices" Multiplicity="*" />
@@ -268,6 +288,7 @@
         <EntityContainer Name="ChcDBModelStoreContainer">
           <EntitySet Name="tblCarriers" EntityType="Self.tblCarriers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblContainers" EntityType="Self.tblContainers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContractNumber" EntityType="Self.tblContractNumber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDisposalLocations" EntityType="Self.tblDisposalLocations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEWC" EntityType="Self.tblEWC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
@@ -278,6 +299,10 @@
           <EntitySet Name="tblSites" EntityType="Self.tblSites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserAudit" EntityType="Self.tblUserAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblContractNumber_tblServices" Association="Self.FK_tblContractNumber_tblServices">
+            <End Role="tblServices" EntitySet="tblServices" />
+            <End Role="tblContractNumber" EntitySet="tblContractNumber" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblServices_tblCarriers" Association="Self.FK_tblServices_tblCarriers">
             <End Role="tblCarriers" EntitySet="tblCarriers" />
             <End Role="tblServices" EntitySet="tblServices" />
@@ -391,6 +416,11 @@
           <AssociationSet Name="FK_tblServices_tblEWC" Association="ChcDBModel.FK_tblServices_tblEWC">
             <End Role="tblEWC" EntitySet="tblEWCs" />
             <End Role="tblService" EntitySet="tblServices" />
+          </AssociationSet>
+          <EntitySet Name="tblContractNumbers" EntityType="ChcDBModel.tblContractNumber" />
+          <AssociationSet Name="FK_tblContractNumber_tblServices" Association="ChcDBModel.FK_tblContractNumber_tblServices">
+            <End Role="tblService" EntitySet="tblServices" />
+            <End Role="tblContractNumber" EntitySet="tblContractNumbers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblRole">
@@ -592,6 +622,8 @@
           <NavigationProperty Name="tblScheduleFrequency" Relationship="ChcDBModel.FK_tblServices_tblScheduleFrequencies" FromRole="tblService" ToRole="tblScheduleFrequency" />
           <NavigationProperty Name="tblSite" Relationship="ChcDBModel.FK_tblServices_tblSites" FromRole="tblService" ToRole="tblSite" />
           <NavigationProperty Name="tblEWC" Relationship="ChcDBModel.FK_tblServices_tblEWC" FromRole="tblService" ToRole="tblEWC" />
+          <NavigationProperty Name="tblContractNumbers" Relationship="ChcDBModel.FK_tblContractNumber_tblServices" FromRole="tblService" ToRole="tblContractNumber" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblServices_tblCarriers">
           <End Type="ChcDBModel.tblCarrier" Role="tblCarrier" Multiplicity="1" />
@@ -674,6 +706,26 @@
             </Principal>
             <Dependent Role="tblService">
               <PropertyRef Name="EWC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblContractNumber">
+          <Key>
+            <PropertyRef Name="ContractNumber" />
+          </Key>
+          <Property Name="ContractNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblService" Relationship="ChcDBModel.FK_tblContractNumber_tblServices" FromRole="tblContractNumber" ToRole="tblService" />
+        </EntityType>
+        <Association Name="FK_tblContractNumber_tblServices">
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="1" />
+          <End Type="ChcDBModel.tblContractNumber" Role="tblContractNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblService">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="tblContractNumber">
+              <PropertyRef Name="ServiceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -783,6 +835,7 @@
           <EntitySetMapping Name="tblServices">
             <EntityTypeMapping TypeName="ChcDBModel.tblService">
               <MappingFragment StoreEntitySet="tblServices">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="IsRecurring" ColumnName="IsRecurring" />
                 <ScalarProperty Name="DisposalLocationID" ColumnName="DisposalLocationID" />
                 <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
@@ -808,6 +861,14 @@
                 <ScalarProperty Name="WasteType" ColumnName="WasteType" />
                 <ScalarProperty Name="SubChapter" ColumnName="SubChapter" />
                 <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContractNumbers">
+            <EntityTypeMapping TypeName="ChcDBModel.tblContractNumber">
+              <MappingFragment StoreEntitySet="tblContractNumber">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

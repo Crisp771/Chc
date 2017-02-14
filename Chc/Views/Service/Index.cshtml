@@ -1,10 +1,10 @@
 ﻿@model ChcObjects.Service
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Service";
 }
 
-<h2>Index</h2>
+<h2>Service</h2>
 
 
 @(Html.Kendo().Grid<ChcObjects.Service>()
@@ -32,6 +32,7 @@
     .Pageable()
     .Sortable()
     .Scrollable()
+    .Events(e => e.Edit("ServiceUI.onEdit"))
     .DataSource(dataSource => dataSource
         .Ajax()
         .PageSize(20)
@@ -39,7 +40,7 @@
         .Create(update => update.Action("CreateService", "Service"))
         .Read(read => read.Action("GetServices", "Service"))
         .Update(update => update.Action("UpdateService", "Service"))
-        .Destroy(update => update.Action("DeleteService", "SiServicete"))
+        .Destroy(update => update.Action("DeleteService", "Service"))
     //.DataSource(d => d
     //    .Custom()
     //    .Type("aspnetmvc-ajax")

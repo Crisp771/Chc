@@ -64,6 +64,8 @@ namespace ChcObjects
         [DataMember]
         [Display(Name = "Is this service recurring?", Prompt = "Is Recurring.", Description = "IsRecurring")]
         public bool IsRecurring { get; set; }
+        [DataMember]
+        public bool Deleted { get; set; }
 
         public Service()
         {
@@ -132,31 +134,45 @@ namespace ChcObjects
 
         public IList<Service> GetServices()
         {
-            return _context.tblServices.ToList().Select(s => new Service(s)).ToList();
+            return _context.tblServices.Where(w=>!w.Deleted).ToList().Select(s => new Service(s)).ToList();
         }
 
         public Service CreateService(IService service)
         {
-            var newservice = new tblService()
+                 var newservice = new tblService()
+                {
+                    ServiceID = service.ServiceID,
+                    SiteID = service.SiteID,
+                    StartDate = service.StartDate,
+                    ContractNumber = service.ContractNumber,
+                    ContainerID = service.ContainerID,
+                    EWC = service.EWC,
+                    ScheduleFrequencyID = service.ScheduleFrequencyID,
+                    ScheduleDay = service.ScheduleDay,
+                    InPrice = service.InPrice,
+                    OutPrice = service.OutPrice,
+                    CarrierID = service.CarrierID,
+                    DisposalLocationID = service.DisposalLocationID,
+                    IsRecurring = service.IsRecurring
+                };
+            using (var dbContextTransaction = _context.Database.BeginTransaction())
             {
-                ServiceID = service.ServiceID,
-                SiteID = service.SiteID,
-                StartDate = service.StartDate,
-                ContractNumber = service.ContractNumber,
-                ContainerID = service.ContainerID,
-                EWC = service.EWC,
-                ScheduleFrequencyID = service.ScheduleFrequencyID,
-                ScheduleDay = service.ScheduleDay,
-                InPrice = service.InPrice,
-                OutPrice = service.OutPrice,
-                CarrierID = service.CarrierID,
-                DisposalLocationID = service.DisposalLocationID,
-                IsRecurring = service.IsRecurring
-            };
-
-            _context.tblServices.Add(newservice);
-            _context.SaveChanges();
-
+                try
+                {
+                    _context.tblServices.Add(newservice);
+                    _context.SaveChanges();
+                    var newcontractnumber = new tblContractNumber() { ServiceID = newservice.ServiceID };
+                    _context.tblContractNumbers.Add(newcontractnumber);
+                    _context.SaveChanges();
+                    newservice.ContractNumber = newcontractnumber.ContractNumber;
+                    _context.SaveChanges();
+                    dbContextTransaction.Commit();
+                }
+                catch(Exception e)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
             return new Service(newservice);
         }
 
@@ -177,6 +193,7 @@ namespace ChcObjects
             oldservice.CarrierID = service.CarrierID;
             oldservice.DisposalLocationID = service.DisposalLocationID;
             oldservice.IsRecurring = service.IsRecurring;
+            oldservice.Deleted = service.Deleted;
 
             _context.SaveChanges();
 

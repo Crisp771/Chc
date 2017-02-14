@@ -54,7 +54,7 @@ namespace Chc.Controllers
         }
         public JsonResult DeleteService(Service service)
         {
-            //service.Deleted = true;
+            service.Deleted = true;
             return Json(new BookingServiceClient().UpdateService(service, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
     }

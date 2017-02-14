@@ -29,6 +29,8 @@
         <AssociationConnector Association="ChcDBModel.FK_tblServices_tblSites" />
         <EntityTypeShape EntityType="ChcDBModel.tblEWC" Width="1.5" PointX="7.375" PointY="1" />
         <AssociationConnector Association="ChcDBModel.FK_tblServices_tblEWC" />
+        <EntityTypeShape EntityType="ChcDBModel.tblContractNumber" Width="1.5" PointX="7.375" PointY="4.75" />
+        <AssociationConnector Association="ChcDBModel.FK_tblContractNumber_tblServices" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

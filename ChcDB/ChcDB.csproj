@@ -70,11 +70,13 @@
       <DependentUpon>ChcWasteManagementModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Container.cs" />
+    <Compile Include="ContractNumber.cs" />
     <Compile Include="DisposalLocation.cs" />
     <Compile Include="EWC.cs" />
     <Compile Include="ICarrier.cs" />
     <Compile Include="IChcDBEntities.cs" />
     <Compile Include="IContainer.cs" />
+    <Compile Include="IContractNumber.cs" />
     <Compile Include="IDisposalLocation.cs" />
     <Compile Include="IEwc.cs" />
     <Compile Include="IScheduleFrequency.cs" />
@@ -96,6 +98,9 @@
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblContainer.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContractNumber.cs">
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblDisposalLocation.cs">

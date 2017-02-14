@@ -15,5 +15,6 @@
         int CarrierID { get; set; }
         int DisposalLocationID { get; set; }
         bool IsRecurring { get; set; }
+        bool Deleted { get; set; }
     }
 }

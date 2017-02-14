@@ -4,6 +4,7 @@ namespace ChcDB
 {
     public interface IChcDBEntities
     {
+        Database Database { get; }
         int SaveChanges();
         DbSet<tblRole> tblRoles { get; set; }
         DbSet<tblUser> tblUsers { get; set; }
@@ -17,5 +18,6 @@ namespace ChcDB
         DbSet<tblScheduleFrequency> tblScheduleFrequencies { get; set; }
         DbSet<tblService> tblServices { get; set; }
         DbSet<tblEWC> tblEWCs { get; set; }
+        DbSet<tblContractNumber> tblContractNumbers { get; set; }
     }
 }

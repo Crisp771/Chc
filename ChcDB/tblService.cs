@@ -14,6 +14,12 @@ namespace ChcDB
     
     public partial class tblService
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblService()
+        {
+            this.tblContractNumbers = new HashSet<tblContractNumber>();
+        }
+    
         public int ServiceID { get; set; }
         public int SiteID { get; set; }
         public System.DateTime StartDate { get; set; }
@@ -27,6 +33,7 @@ namespace ChcDB
         public int CarrierID { get; set; }
         public int DisposalLocationID { get; set; }
         public bool IsRecurring { get; set; }
+        public bool Deleted { get; set; }
     
         public virtual tblCarrier tblCarrier { get; set; }
         public virtual tblContainer tblContainer { get; set; }
@@ -34,5 +41,7 @@ namespace ChcDB
         public virtual tblScheduleFrequency tblScheduleFrequency { get; set; }
         public virtual tblSite tblSite { get; set; }
         public virtual tblEWC tblEWC { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblContractNumber> tblContractNumbers { get; set; }
     }
 }

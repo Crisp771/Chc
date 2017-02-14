@@ -45,7 +45,7 @@
             </div>
             <div class="editor-field">
                 @(Html.Kendo().DropDownListFor(model => model.CarrierID).BindTo((System.Collections.IEnumerable) ViewData["Carriers"]).DataValueField("CarrierID").DataTextField("CarrierName"))
-                @Html.ValidationMessageFor(model => model.SiteID)
+                @Html.ValidationMessageFor(model => model.CarrierID)
             </div>
         </div>
         <div class="startDateEditor">
@@ -53,7 +53,7 @@
                 @Html.LabelFor(model => model.StartDate)
             </div>
             <div class="editor-field">
-                @(Html.Kendo().DatePickerFor(model => model.StartDate).Culture("en-GB").Format("dd/MM/yyyy"))
+                @(Html.Kendo().DatePickerFor(model => model.StartDate).Culture("en-GB").Format("dd/MM/yyyy").Events(e => e.Change("ServiceUI.onStartDateChange")))
                 @Html.ValidationMessageFor(model => model.StartDate)
             </div>
         </div>
