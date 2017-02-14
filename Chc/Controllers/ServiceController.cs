@@ -1,5 +1,6 @@
 ﻿using Chc.BookingService;
 using Chc.Models;
+using ChcObjects;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System;
@@ -27,9 +28,15 @@ namespace Chc.Controllers
                 ViewData["Containers"] = bs.GetContainers();
                 ViewData["DisposalLocations"] = bs.GetDisposalLocations();
                 ViewData["ScheduleFrequencies"] = bs.GetScheduleFrequncies();
+                ViewData["EWCodes"] = bs.GetEWCs();
             }
 
             ViewData["Sites"] = new SiteService.SiteServiceClient().GetSites();
+        }
+
+        public JsonResult GetEWcodes([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(new BookingServiceClient().GetEWCs().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult CreateService(Service service)

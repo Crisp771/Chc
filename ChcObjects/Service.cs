@@ -1,6 +1,7 @@
 ﻿using ChcDB;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -16,39 +17,52 @@ namespace ChcObjects
         [DataMember]
         public int ServiceID { get; set; }
         [DataMember]
+        [Display(Name = "Site", Prompt = "Enter Site.", Description = "Site")]
+        [DisplayName("Site Display")]
         [UIHint("GridForeignKey")]
         public int SiteID { get; set; }
         [DataMember]
         [DataType(DataType.Date)]
+        [Display(Name = "Service Start Date", Prompt = "Start Date", Description = "Service Start Date")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime StartDate { get; set; }
         [DataMember]
+        [Display(Name = "Contract Number", Prompt = "Contract Number.", Description = "Contract Number")]
         public int ContractNumber { get; set; }
         [DataMember]
         [UIHint("GridForeignKey")]
+        [Display(Name = "Container Type", Prompt = "Please pick a container.", Description = "Container Type")]
         public int ContainerID { get; set; }
         [DataMember]
+        [Display(Name = "EWC Number", Prompt = "Please enter an EWC.", Description = "European Waste Code")]
         [DataType(DataType.Text)]
         [StringLength(50)]
         public string EWC { get; set; }
         [DataMember]
+        [Display(Name = "Schedule Frequency", Prompt = "Please pick a Schedule Frequency.", Description = "Schedule Frequency")]
         [UIHint("GridForeignKey")]
         public int ScheduleFrequencyID { get; set; }
         [DataMember]
+        [Display(Name = "Schedule Day", Prompt = "Please pick a Schedule Day.", Description = "Schedule Day")]
         public int ScheduleDay { get; set; }
         [DataMember]
         [DataType(DataType.Currency)]
+        [Display(Name = "In Price", Prompt = "Please enter an In Price.", Description = "In Price")]
         public decimal InPrice { get; set; }
         [DataMember]
+        [Display(Name = "Out Price", Prompt = "Please enter an Out Price.", Description = "Out Price")]
         [DataType(DataType.Currency)]
         public decimal OutPrice { get; set; }
         [DataMember]
+        [Display(Name = "Carrier", Prompt = "Please pick a carrier.", Description = "Carrier")]
         [UIHint("GridForeignKey")]
         public int CarrierID { get; set; }
         [DataMember]
+        [Display(Name = "Disposal Location", Prompt = "Please pick a disposal location.", Description = "Disposal Location")]
         [UIHint("GridForeignKey")]
         public int DisposalLocationID { get; set; }
         [DataMember]
+        [Display(Name = "Is this service recurring?", Prompt = "Is Recurring.", Description = "IsRecurring")]
         public bool IsRecurring { get; set; }
 
         public Service()

@@ -76,4 +76,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DisposalLocation" nillable="true" type="tns:DisposalLocation" />
+  <xs:complexType name="ArrayOfEWC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EWC" nillable="true" type="tns:EWC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEWC" nillable="true" type="tns:ArrayOfEWC" />
+  <xs:complexType name="EWC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Chapter" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EWCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsHazardous" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SubChapter" type="xs:int" />
+      <xs:element minOccurs="0" name="WasteType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EWC" nillable="true" type="tns:EWC" />
 </xs:schema>

@@ -9,414 +9,53 @@
 //------------------------------------------------------------------------------
 
 namespace Chc.SiteService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SICLookup", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class SICLookup : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DivisionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IndustryGroupField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MajorGroupField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SICField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Division {
-            get {
-                return this.DivisionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DivisionField, value) != true)) {
-                    this.DivisionField = value;
-                    this.RaisePropertyChanged("Division");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IndustryGroup {
-            get {
-                return this.IndustryGroupField;
-            }
-            set {
-                if ((this.IndustryGroupField.Equals(value) != true)) {
-                    this.IndustryGroupField = value;
-                    this.RaisePropertyChanged("IndustryGroup");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MajorGroup {
-            get {
-                return this.MajorGroupField;
-            }
-            set {
-                if ((this.MajorGroupField.Equals(value) != true)) {
-                    this.MajorGroupField = value;
-                    this.RaisePropertyChanged("MajorGroup");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SIC {
-            get {
-                return this.SICField;
-            }
-            set {
-                if ((this.SICField.Equals(value) != true)) {
-                    this.SICField = value;
-                    this.RaisePropertyChanged("SIC");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Site", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class Site : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ActionDetailsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContactDetailsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool DeletedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SICcodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SiteIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SiteNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ActionDetails {
-            get {
-                return this.ActionDetailsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ActionDetailsField, value) != true)) {
-                    this.ActionDetailsField = value;
-                    this.RaisePropertyChanged("ActionDetails");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ContactDetails {
-            get {
-                return this.ContactDetailsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContactDetailsField, value) != true)) {
-                    this.ContactDetailsField = value;
-                    this.RaisePropertyChanged("ContactDetails");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Deleted {
-            get {
-                return this.DeletedField;
-            }
-            set {
-                if ((this.DeletedField.Equals(value) != true)) {
-                    this.DeletedField = value;
-                    this.RaisePropertyChanged("Deleted");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SICcode {
-            get {
-                return this.SICcodeField;
-            }
-            set {
-                if ((this.SICcodeField.Equals(value) != true)) {
-                    this.SICcodeField = value;
-                    this.RaisePropertyChanged("SICcode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SiteID {
-            get {
-                return this.SiteIDField;
-            }
-            set {
-                if ((this.SiteIDField.Equals(value) != true)) {
-                    this.SiteIDField = value;
-                    this.RaisePropertyChanged("SiteID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SiteName {
-            get {
-                return this.SiteNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SiteNameField, value) != true)) {
-                    this.SiteNameField = value;
-                    this.RaisePropertyChanged("SiteName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SiteAudit", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class SiteAudit : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EventField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime EventDateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SiteAuditIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SiteIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Event {
-            get {
-                return this.EventField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EventField, value) != true)) {
-                    this.EventField = value;
-                    this.RaisePropertyChanged("Event");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime EventDateTime {
-            get {
-                return this.EventDateTimeField;
-            }
-            set {
-                if ((this.EventDateTimeField.Equals(value) != true)) {
-                    this.EventDateTimeField = value;
-                    this.RaisePropertyChanged("EventDateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SiteAuditID {
-            get {
-                return this.SiteAuditIDField;
-            }
-            set {
-                if ((this.SiteAuditIDField.Equals(value) != true)) {
-                    this.SiteAuditIDField = value;
-                    this.RaisePropertyChanged("SiteAuditID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SiteID {
-            get {
-                return this.SiteIDField;
-            }
-            set {
-                if ((this.SiteIDField.Equals(value) != true)) {
-                    this.SiteIDField = value;
-                    this.RaisePropertyChanged("SiteID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserID {
-            get {
-                return this.UserIDField;
-            }
-            set {
-                if ((this.UserIDField.Equals(value) != true)) {
-                    this.UserIDField = value;
-                    this.RaisePropertyChanged("UserID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SiteService.ISiteService")]
     public interface ISiteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSICLookups", ReplyAction="http://tempuri.org/ISiteService/GetSICLookupsResponse")]
-        Chc.SiteService.SICLookup[] GetSICLookups();
+        ChcObjects.SICLookup[] GetSICLookups();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSICLookups", ReplyAction="http://tempuri.org/ISiteService/GetSICLookupsResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.SICLookup[]> GetSICLookupsAsync();
+        System.Threading.Tasks.Task<ChcObjects.SICLookup[]> GetSICLookupsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSICById", ReplyAction="http://tempuri.org/ISiteService/GetSICByIdResponse")]
-        Chc.SiteService.SICLookup GetSICById(int id);
+        ChcObjects.SICLookup GetSICById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSICById", ReplyAction="http://tempuri.org/ISiteService/GetSICByIdResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.SICLookup> GetSICByIdAsync(int id);
+        System.Threading.Tasks.Task<ChcObjects.SICLookup> GetSICByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSites", ReplyAction="http://tempuri.org/ISiteService/GetSitesResponse")]
-        Chc.SiteService.Site[] GetSites();
+        ChcObjects.Site[] GetSites();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSites", ReplyAction="http://tempuri.org/ISiteService/GetSitesResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.Site[]> GetSitesAsync();
+        System.Threading.Tasks.Task<ChcObjects.Site[]> GetSitesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSiteById", ReplyAction="http://tempuri.org/ISiteService/GetSiteByIdResponse")]
-        Chc.SiteService.Site GetSiteById(int id);
+        ChcObjects.Site GetSiteById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSiteById", ReplyAction="http://tempuri.org/ISiteService/GetSiteByIdResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.Site> GetSiteByIdAsync(int id);
+        System.Threading.Tasks.Task<ChcObjects.Site> GetSiteByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/CreateSite", ReplyAction="http://tempuri.org/ISiteService/CreateSiteResponse")]
-        Chc.SiteService.Site CreateSite(Chc.SiteService.Site site, int userId);
+        ChcObjects.Site CreateSite(ChcObjects.Site site, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/CreateSite", ReplyAction="http://tempuri.org/ISiteService/CreateSiteResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.Site> CreateSiteAsync(Chc.SiteService.Site site, int userId);
+        System.Threading.Tasks.Task<ChcObjects.Site> CreateSiteAsync(ChcObjects.Site site, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/UpdateSite", ReplyAction="http://tempuri.org/ISiteService/UpdateSiteResponse")]
-        Chc.SiteService.Site UpdateSite(Chc.SiteService.Site site, int userId);
+        ChcObjects.Site UpdateSite(ChcObjects.Site site, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/UpdateSite", ReplyAction="http://tempuri.org/ISiteService/UpdateSiteResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.Site> UpdateSiteAsync(Chc.SiteService.Site site, int userId);
+        System.Threading.Tasks.Task<ChcObjects.Site> UpdateSiteAsync(ChcObjects.Site site, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSiteAudit", ReplyAction="http://tempuri.org/ISiteService/GetSiteAuditResponse")]
-        Chc.SiteService.SiteAudit[] GetSiteAudit(Chc.SiteService.Site site);
+        ChcObjects.SiteAudit[] GetSiteAudit(ChcObjects.Site site);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISiteService/GetSiteAudit", ReplyAction="http://tempuri.org/ISiteService/GetSiteAuditResponse")]
-        System.Threading.Tasks.Task<Chc.SiteService.SiteAudit[]> GetSiteAuditAsync(Chc.SiteService.Site site);
+        System.Threading.Tasks.Task<ChcObjects.SiteAudit[]> GetSiteAuditAsync(ChcObjects.Site site);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -446,59 +85,59 @@ namespace Chc.SiteService {
                 base(binding, remoteAddress) {
         }
         
-        public Chc.SiteService.SICLookup[] GetSICLookups() {
+        public ChcObjects.SICLookup[] GetSICLookups() {
             return base.Channel.GetSICLookups();
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.SICLookup[]> GetSICLookupsAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.SICLookup[]> GetSICLookupsAsync() {
             return base.Channel.GetSICLookupsAsync();
         }
         
-        public Chc.SiteService.SICLookup GetSICById(int id) {
+        public ChcObjects.SICLookup GetSICById(int id) {
             return base.Channel.GetSICById(id);
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.SICLookup> GetSICByIdAsync(int id) {
+        public System.Threading.Tasks.Task<ChcObjects.SICLookup> GetSICByIdAsync(int id) {
             return base.Channel.GetSICByIdAsync(id);
         }
         
-        public Chc.SiteService.Site[] GetSites() {
+        public ChcObjects.Site[] GetSites() {
             return base.Channel.GetSites();
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.Site[]> GetSitesAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.Site[]> GetSitesAsync() {
             return base.Channel.GetSitesAsync();
         }
         
-        public Chc.SiteService.Site GetSiteById(int id) {
+        public ChcObjects.Site GetSiteById(int id) {
             return base.Channel.GetSiteById(id);
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.Site> GetSiteByIdAsync(int id) {
+        public System.Threading.Tasks.Task<ChcObjects.Site> GetSiteByIdAsync(int id) {
             return base.Channel.GetSiteByIdAsync(id);
         }
         
-        public Chc.SiteService.Site CreateSite(Chc.SiteService.Site site, int userId) {
+        public ChcObjects.Site CreateSite(ChcObjects.Site site, int userId) {
             return base.Channel.CreateSite(site, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.Site> CreateSiteAsync(Chc.SiteService.Site site, int userId) {
+        public System.Threading.Tasks.Task<ChcObjects.Site> CreateSiteAsync(ChcObjects.Site site, int userId) {
             return base.Channel.CreateSiteAsync(site, userId);
         }
         
-        public Chc.SiteService.Site UpdateSite(Chc.SiteService.Site site, int userId) {
+        public ChcObjects.Site UpdateSite(ChcObjects.Site site, int userId) {
             return base.Channel.UpdateSite(site, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.Site> UpdateSiteAsync(Chc.SiteService.Site site, int userId) {
+        public System.Threading.Tasks.Task<ChcObjects.Site> UpdateSiteAsync(ChcObjects.Site site, int userId) {
             return base.Channel.UpdateSiteAsync(site, userId);
         }
         
-        public Chc.SiteService.SiteAudit[] GetSiteAudit(Chc.SiteService.Site site) {
+        public ChcObjects.SiteAudit[] GetSiteAudit(ChcObjects.Site site) {
             return base.Channel.GetSiteAudit(site);
         }
         
-        public System.Threading.Tasks.Task<Chc.SiteService.SiteAudit[]> GetSiteAuditAsync(Chc.SiteService.Site site) {
+        public System.Threading.Tasks.Task<ChcObjects.SiteAudit[]> GetSiteAuditAsync(ChcObjects.Site site) {
             return base.Channel.GetSiteAuditAsync(site);
         }
     }

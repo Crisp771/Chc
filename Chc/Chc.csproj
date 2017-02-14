@@ -652,6 +652,18 @@
     <Content Include="Content\kendo\2017.1.118\fonts\glyphs\WebComponentsIcons.woff" />
     <Content Include="Content\kendo\2017.1.118\images\kendoui.ttf" />
     <Content Include="Content\kendo\2017.1.118\images\kendoui.woff" />
+    <Content Include="Properties\DataSources\ChcObjects.Carrier.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.Container.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.DisposalLocation.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.ScheduleFrequency.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.Service.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.SICLookup.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.Site.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.SiteAudit.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.Role.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.User.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.UserAudit.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.EWC.datasource" />
     <None Include="Properties\PublishProfiles\ChcPublish.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1697,38 +1709,15 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ServiceUI.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="Service References\BookingService\BookingService.disco" />
-    <Content Include="Service References\BookingService\Chc.BookingService.Carrier.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.Container.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.DisposalLocation.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.ScheduleFrequency.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.Service.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Service References\BookingService\configuration91.svcinfo" />
     <None Include="Service References\BookingService\configuration.svcinfo" />
     <None Include="Service References\BookingService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\SiteService\Chc.SiteService.SICLookup.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\SiteService\Chc.SiteService.Site.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\SiteService\Chc.SiteService.SiteAudit.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Service References\BookingService\BookingService.wsdl" />
     <None Include="Service References\BookingService\BookingService.xsd">
       <SubType>Designer</SubType>
@@ -1746,15 +1735,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\UserService\Chc.UserService.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserService\Chc.UserService.Role.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserService\Chc.UserService.UserAudit.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Service References\SiteService\SiteService.wsdl" />
     <None Include="Service References\SiteService\SiteService.xsd">
       <SubType>Designer</SubType>
@@ -2042,6 +2022,10 @@
     <ProjectReference Include="..\ChcDB\ChcDB.csproj">
       <Project>{60CD7A46-FD2D-4699-9887-0720BB28456E}</Project>
       <Name>ChcDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChcObjects\ChcObjects.csproj">
+      <Project>{e092a385-ce05-4885-91cb-eebc1de0cb8e}</Project>
+      <Name>ChcObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

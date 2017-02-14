@@ -1,4 +1,4 @@
-﻿@model Chc.UserService.User
+﻿@model ChcObjects.User
 
 @{
     ViewBag.Title = "Index";
@@ -6,7 +6,7 @@
 
 <h2>Index</h2>
 
-@(Html.Kendo().Grid<Chc.UserService.User>()
+@(Html.Kendo().Grid<ChcObjects.User>()
     .Name("UserGrid")
     .Columns(c =>
     {

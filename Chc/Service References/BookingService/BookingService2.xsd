@@ -105,4 +105,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetEWCs">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEWCsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ChcObjects" minOccurs="0" name="GetEWCsResult" nillable="true" type="q11:ArrayOfEWC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

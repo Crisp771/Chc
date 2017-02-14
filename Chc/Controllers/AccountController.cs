@@ -12,6 +12,7 @@ using Chc.Models;
 using System.Web.Security;
 using Chc.UserService;
 using System.Web.Script.Serialization;
+using ChcObjects;
 
 namespace Chc.Controllers
 {

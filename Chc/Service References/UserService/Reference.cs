@@ -9,459 +9,53 @@
 //------------------------------------------------------------------------------
 
 namespace Chc.UserService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.example.com")]
-    [System.SerializableAttribute()]
-    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool DeletedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoleIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Deleted {
-            get {
-                return this.DeletedField;
-            }
-            set {
-                if ((this.DeletedField.Equals(value) != true)) {
-                    this.DeletedField = value;
-                    this.RaisePropertyChanged("Deleted");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RoleID {
-            get {
-                return this.RoleIDField;
-            }
-            set {
-                if ((this.RoleIDField.Equals(value) != true)) {
-                    this.RoleIDField = value;
-                    this.RaisePropertyChanged("RoleID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserID {
-            get {
-                return this.UserIDField;
-            }
-            set {
-                if ((this.UserIDField.Equals(value) != true)) {
-                    this.UserIDField = value;
-                    this.RaisePropertyChanged("UserID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginViewModel", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class LoginViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool DeletedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool RememberMeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoleIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Deleted {
-            get {
-                return this.DeletedField;
-            }
-            set {
-                if ((this.DeletedField.Equals(value) != true)) {
-                    this.DeletedField = value;
-                    this.RaisePropertyChanged("Deleted");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool RememberMe {
-            get {
-                return this.RememberMeField;
-            }
-            set {
-                if ((this.RememberMeField.Equals(value) != true)) {
-                    this.RememberMeField = value;
-                    this.RaisePropertyChanged("RememberMe");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RoleID {
-            get {
-                return this.RoleIDField;
-            }
-            set {
-                if ((this.RoleIDField.Equals(value) != true)) {
-                    this.RoleIDField = value;
-                    this.RaisePropertyChanged("RoleID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserID {
-            get {
-                return this.UserIDField;
-            }
-            set {
-                if ((this.UserIDField.Equals(value) != true)) {
-                    this.UserIDField = value;
-                    this.RaisePropertyChanged("UserID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoleIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RolenameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RoleID {
-            get {
-                return this.RoleIDField;
-            }
-            set {
-                if ((this.RoleIDField.Equals(value) != true)) {
-                    this.RoleIDField = value;
-                    this.RaisePropertyChanged("RoleID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rolename {
-            get {
-                return this.RolenameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolenameField, value) != true)) {
-                    this.RolenameField = value;
-                    this.RaisePropertyChanged("Rolename");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserAudit", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class UserAudit : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CarriedOutByUserIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EventField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime EventDateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserAuditIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CarriedOutByUserID {
-            get {
-                return this.CarriedOutByUserIDField;
-            }
-            set {
-                if ((this.CarriedOutByUserIDField.Equals(value) != true)) {
-                    this.CarriedOutByUserIDField = value;
-                    this.RaisePropertyChanged("CarriedOutByUserID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Event {
-            get {
-                return this.EventField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EventField, value) != true)) {
-                    this.EventField = value;
-                    this.RaisePropertyChanged("Event");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime EventDateTime {
-            get {
-                return this.EventDateTimeField;
-            }
-            set {
-                if ((this.EventDateTimeField.Equals(value) != true)) {
-                    this.EventDateTimeField = value;
-                    this.RaisePropertyChanged("EventDateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserAuditID {
-            get {
-                return this.UserAuditIDField;
-            }
-            set {
-                if ((this.UserAuditIDField.Equals(value) != true)) {
-                    this.UserAuditIDField = value;
-                    this.RaisePropertyChanged("UserAuditID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserID {
-            get {
-                return this.UserIDField;
-            }
-            set {
-                if ((this.UserIDField.Equals(value) != true)) {
-                    this.UserIDField = value;
-                    this.RaisePropertyChanged("UserID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserService.IUserService")]
     public interface IUserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserList", ReplyAction="http://tempuri.org/IUserService/GetUserListResponse")]
-        Chc.UserService.User[] GetUserList();
+        ChcObjects.User[] GetUserList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserList", ReplyAction="http://tempuri.org/IUserService/GetUserListResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User[]> GetUserListAsync();
+        System.Threading.Tasks.Task<ChcObjects.User[]> GetUserListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ValidateUserByUsernameAndPassword", ReplyAction="http://tempuri.org/IUserService/ValidateUserByUsernameAndPasswordResponse")]
-        Chc.UserService.User ValidateUserByUsernameAndPassword(Chc.UserService.LoginViewModel user);
+        ChcObjects.User ValidateUserByUsernameAndPassword(ChcObjects.LoginViewModel user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ValidateUserByUsernameAndPassword", ReplyAction="http://tempuri.org/IUserService/ValidateUserByUsernameAndPasswordResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(Chc.UserService.LoginViewModel user);
+        System.Threading.Tasks.Task<ChcObjects.User> ValidateUserByUsernameAndPasswordAsync(ChcObjects.LoginViewModel user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRoles", ReplyAction="http://tempuri.org/IUserService/GetRolesResponse")]
-        Chc.UserService.Role[] GetRoles();
+        ChcObjects.Role[] GetRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRoles", ReplyAction="http://tempuri.org/IUserService/GetRolesResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.Role[]> GetRolesAsync();
+        System.Threading.Tasks.Task<ChcObjects.Role[]> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        Chc.UserService.User CreateUser(Chc.UserService.User user, int userid);
+        ChcObjects.User CreateUser(ChcObjects.User user, int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user, int userid);
+        System.Threading.Tasks.Task<ChcObjects.User> CreateUserAsync(ChcObjects.User user, int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        Chc.UserService.User UpdateUser(Chc.UserService.User user, int userid);
+        ChcObjects.User UpdateUser(ChcObjects.User user, int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user, int userid);
+        System.Threading.Tasks.Task<ChcObjects.User> UpdateUserAsync(ChcObjects.User user, int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserAudit", ReplyAction="http://tempuri.org/IUserService/GetUserAuditResponse")]
-        Chc.UserService.UserAudit[] GetUserAudit(Chc.UserService.User user);
+        ChcObjects.UserAudit[] GetUserAudit(ChcObjects.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserAudit", ReplyAction="http://tempuri.org/IUserService/GetUserAuditResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.UserAudit[]> GetUserAuditAsync(Chc.UserService.User user);
+        System.Threading.Tasks.Task<ChcObjects.UserAudit[]> GetUserAuditAsync(ChcObjects.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByID", ReplyAction="http://tempuri.org/IUserService/GetUserByIDResponse")]
-        Chc.UserService.User GetUserByID(int id);
+        ChcObjects.User GetUserByID(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByID", ReplyAction="http://tempuri.org/IUserService/GetUserByIDResponse")]
-        System.Threading.Tasks.Task<Chc.UserService.User> GetUserByIDAsync(int id);
+        System.Threading.Tasks.Task<ChcObjects.User> GetUserByIDAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -491,59 +85,59 @@ namespace Chc.UserService {
                 base(binding, remoteAddress) {
         }
         
-        public Chc.UserService.User[] GetUserList() {
+        public ChcObjects.User[] GetUserList() {
             return base.Channel.GetUserList();
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User[]> GetUserListAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.User[]> GetUserListAsync() {
             return base.Channel.GetUserListAsync();
         }
         
-        public Chc.UserService.User ValidateUserByUsernameAndPassword(Chc.UserService.LoginViewModel user) {
+        public ChcObjects.User ValidateUserByUsernameAndPassword(ChcObjects.LoginViewModel user) {
             return base.Channel.ValidateUserByUsernameAndPassword(user);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User> ValidateUserByUsernameAndPasswordAsync(Chc.UserService.LoginViewModel user) {
+        public System.Threading.Tasks.Task<ChcObjects.User> ValidateUserByUsernameAndPasswordAsync(ChcObjects.LoginViewModel user) {
             return base.Channel.ValidateUserByUsernameAndPasswordAsync(user);
         }
         
-        public Chc.UserService.Role[] GetRoles() {
+        public ChcObjects.Role[] GetRoles() {
             return base.Channel.GetRoles();
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.Role[]> GetRolesAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.Role[]> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
         }
         
-        public Chc.UserService.User CreateUser(Chc.UserService.User user, int userid) {
+        public ChcObjects.User CreateUser(ChcObjects.User user, int userid) {
             return base.Channel.CreateUser(user, userid);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User> CreateUserAsync(Chc.UserService.User user, int userid) {
+        public System.Threading.Tasks.Task<ChcObjects.User> CreateUserAsync(ChcObjects.User user, int userid) {
             return base.Channel.CreateUserAsync(user, userid);
         }
         
-        public Chc.UserService.User UpdateUser(Chc.UserService.User user, int userid) {
+        public ChcObjects.User UpdateUser(ChcObjects.User user, int userid) {
             return base.Channel.UpdateUser(user, userid);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User> UpdateUserAsync(Chc.UserService.User user, int userid) {
+        public System.Threading.Tasks.Task<ChcObjects.User> UpdateUserAsync(ChcObjects.User user, int userid) {
             return base.Channel.UpdateUserAsync(user, userid);
         }
         
-        public Chc.UserService.UserAudit[] GetUserAudit(Chc.UserService.User user) {
+        public ChcObjects.UserAudit[] GetUserAudit(ChcObjects.User user) {
             return base.Channel.GetUserAudit(user);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.UserAudit[]> GetUserAuditAsync(Chc.UserService.User user) {
+        public System.Threading.Tasks.Task<ChcObjects.UserAudit[]> GetUserAuditAsync(ChcObjects.User user) {
             return base.Channel.GetUserAuditAsync(user);
         }
         
-        public Chc.UserService.User GetUserByID(int id) {
+        public ChcObjects.User GetUserByID(int id) {
             return base.Channel.GetUserByID(id);
         }
         
-        public System.Threading.Tasks.Task<Chc.UserService.User> GetUserByIDAsync(int id) {
+        public System.Threading.Tasks.Task<ChcObjects.User> GetUserByIDAsync(int id) {
             return base.Channel.GetUserByIDAsync(id);
         }
     }

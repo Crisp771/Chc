@@ -9,542 +9,65 @@
 //------------------------------------------------------------------------------
 
 namespace Chc.BookingService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Service", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class Service : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CarrierIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ContainerIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ContractNumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DisposalLocationIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EWCField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal InPriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsRecurringField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal OutPriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ScheduleDayField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ScheduleFrequencyIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ServiceIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SiteIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime StartDateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CarrierID {
-            get {
-                return this.CarrierIDField;
-            }
-            set {
-                if ((this.CarrierIDField.Equals(value) != true)) {
-                    this.CarrierIDField = value;
-                    this.RaisePropertyChanged("CarrierID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ContainerID {
-            get {
-                return this.ContainerIDField;
-            }
-            set {
-                if ((this.ContainerIDField.Equals(value) != true)) {
-                    this.ContainerIDField = value;
-                    this.RaisePropertyChanged("ContainerID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ContractNumber {
-            get {
-                return this.ContractNumberField;
-            }
-            set {
-                if ((this.ContractNumberField.Equals(value) != true)) {
-                    this.ContractNumberField = value;
-                    this.RaisePropertyChanged("ContractNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DisposalLocationID {
-            get {
-                return this.DisposalLocationIDField;
-            }
-            set {
-                if ((this.DisposalLocationIDField.Equals(value) != true)) {
-                    this.DisposalLocationIDField = value;
-                    this.RaisePropertyChanged("DisposalLocationID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EWC {
-            get {
-                return this.EWCField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EWCField, value) != true)) {
-                    this.EWCField = value;
-                    this.RaisePropertyChanged("EWC");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal InPrice {
-            get {
-                return this.InPriceField;
-            }
-            set {
-                if ((this.InPriceField.Equals(value) != true)) {
-                    this.InPriceField = value;
-                    this.RaisePropertyChanged("InPrice");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsRecurring {
-            get {
-                return this.IsRecurringField;
-            }
-            set {
-                if ((this.IsRecurringField.Equals(value) != true)) {
-                    this.IsRecurringField = value;
-                    this.RaisePropertyChanged("IsRecurring");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal OutPrice {
-            get {
-                return this.OutPriceField;
-            }
-            set {
-                if ((this.OutPriceField.Equals(value) != true)) {
-                    this.OutPriceField = value;
-                    this.RaisePropertyChanged("OutPrice");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ScheduleDay {
-            get {
-                return this.ScheduleDayField;
-            }
-            set {
-                if ((this.ScheduleDayField.Equals(value) != true)) {
-                    this.ScheduleDayField = value;
-                    this.RaisePropertyChanged("ScheduleDay");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ScheduleFrequencyID {
-            get {
-                return this.ScheduleFrequencyIDField;
-            }
-            set {
-                if ((this.ScheduleFrequencyIDField.Equals(value) != true)) {
-                    this.ScheduleFrequencyIDField = value;
-                    this.RaisePropertyChanged("ScheduleFrequencyID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ServiceID {
-            get {
-                return this.ServiceIDField;
-            }
-            set {
-                if ((this.ServiceIDField.Equals(value) != true)) {
-                    this.ServiceIDField = value;
-                    this.RaisePropertyChanged("ServiceID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SiteID {
-            get {
-                return this.SiteIDField;
-            }
-            set {
-                if ((this.SiteIDField.Equals(value) != true)) {
-                    this.SiteIDField = value;
-                    this.RaisePropertyChanged("SiteID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime StartDate {
-            get {
-                return this.StartDateField;
-            }
-            set {
-                if ((this.StartDateField.Equals(value) != true)) {
-                    this.StartDateField = value;
-                    this.RaisePropertyChanged("StartDate");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Container", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class Container : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ContainerIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContainerNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ContainerID {
-            get {
-                return this.ContainerIDField;
-            }
-            set {
-                if ((this.ContainerIDField.Equals(value) != true)) {
-                    this.ContainerIDField = value;
-                    this.RaisePropertyChanged("ContainerID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ContainerName {
-            get {
-                return this.ContainerNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContainerNameField, value) != true)) {
-                    this.ContainerNameField = value;
-                    this.RaisePropertyChanged("ContainerName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Carrier", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class Carrier : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CarrierIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CarrierNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CarrierID {
-            get {
-                return this.CarrierIDField;
-            }
-            set {
-                if ((this.CarrierIDField.Equals(value) != true)) {
-                    this.CarrierIDField = value;
-                    this.RaisePropertyChanged("CarrierID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CarrierName {
-            get {
-                return this.CarrierNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CarrierNameField, value) != true)) {
-                    this.CarrierNameField = value;
-                    this.RaisePropertyChanged("CarrierName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ScheduleFrequency", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class ScheduleFrequency : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FrequencyNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ScheduleFrequencyIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FrequencyName {
-            get {
-                return this.FrequencyNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FrequencyNameField, value) != true)) {
-                    this.FrequencyNameField = value;
-                    this.RaisePropertyChanged("FrequencyName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ScheduleFrequencyID {
-            get {
-                return this.ScheduleFrequencyIDField;
-            }
-            set {
-                if ((this.ScheduleFrequencyIDField.Equals(value) != true)) {
-                    this.ScheduleFrequencyIDField = value;
-                    this.RaisePropertyChanged("ScheduleFrequencyID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DisposalLocation", Namespace="http://schemas.datacontract.org/2004/07/ChcObjects")]
-    [System.SerializableAttribute()]
-    public partial class DisposalLocation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DisposalLocationIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DisposalLocationNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DisposalLocationID {
-            get {
-                return this.DisposalLocationIDField;
-            }
-            set {
-                if ((this.DisposalLocationIDField.Equals(value) != true)) {
-                    this.DisposalLocationIDField = value;
-                    this.RaisePropertyChanged("DisposalLocationID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DisposalLocationName {
-            get {
-                return this.DisposalLocationNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DisposalLocationNameField, value) != true)) {
-                    this.DisposalLocationNameField = value;
-                    this.RaisePropertyChanged("DisposalLocationName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookingService.IBookingService")]
     public interface IBookingService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetServiceById", ReplyAction="http://tempuri.org/IBookingService/GetServiceByIdResponse")]
-        Chc.BookingService.Service GetServiceById(int id);
+        ChcObjects.Service GetServiceById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetServiceById", ReplyAction="http://tempuri.org/IBookingService/GetServiceByIdResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Service> GetServiceByIdAsync(int id);
+        System.Threading.Tasks.Task<ChcObjects.Service> GetServiceByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetServices", ReplyAction="http://tempuri.org/IBookingService/GetServicesResponse")]
-        Chc.BookingService.Service[] GetServices();
+        ChcObjects.Service[] GetServices();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetServices", ReplyAction="http://tempuri.org/IBookingService/GetServicesResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Service[]> GetServicesAsync();
+        System.Threading.Tasks.Task<ChcObjects.Service[]> GetServicesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateService", ReplyAction="http://tempuri.org/IBookingService/CreateServiceResponse")]
-        Chc.BookingService.Service CreateService(Chc.BookingService.Service service, int userId);
+        ChcObjects.Service CreateService(ChcObjects.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateService", ReplyAction="http://tempuri.org/IBookingService/CreateServiceResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Service> CreateServiceAsync(Chc.BookingService.Service service, int userId);
+        System.Threading.Tasks.Task<ChcObjects.Service> CreateServiceAsync(ChcObjects.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateService", ReplyAction="http://tempuri.org/IBookingService/UpdateServiceResponse")]
-        Chc.BookingService.Service UpdateService(Chc.BookingService.Service service, int userId);
+        ChcObjects.Service UpdateService(ChcObjects.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateService", ReplyAction="http://tempuri.org/IBookingService/UpdateServiceResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Service> UpdateServiceAsync(Chc.BookingService.Service service, int userId);
+        System.Threading.Tasks.Task<ChcObjects.Service> UpdateServiceAsync(ChcObjects.Service service, int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetContainers", ReplyAction="http://tempuri.org/IBookingService/GetContainersResponse")]
-        Chc.BookingService.Container[] GetContainers();
+        ChcObjects.Container[] GetContainers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetContainers", ReplyAction="http://tempuri.org/IBookingService/GetContainersResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Container[]> GetContainersAsync();
+        System.Threading.Tasks.Task<ChcObjects.Container[]> GetContainersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetCarriers", ReplyAction="http://tempuri.org/IBookingService/GetCarriersResponse")]
-        Chc.BookingService.Carrier[] GetCarriers();
+        ChcObjects.Carrier[] GetCarriers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetCarriers", ReplyAction="http://tempuri.org/IBookingService/GetCarriersResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.Carrier[]> GetCarriersAsync();
+        System.Threading.Tasks.Task<ChcObjects.Carrier[]> GetCarriersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetScheduleFrequncies", ReplyAction="http://tempuri.org/IBookingService/GetScheduleFrequnciesResponse")]
-        Chc.BookingService.ScheduleFrequency[] GetScheduleFrequncies();
+        ChcObjects.ScheduleFrequency[] GetScheduleFrequncies();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetScheduleFrequncies", ReplyAction="http://tempuri.org/IBookingService/GetScheduleFrequnciesResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.ScheduleFrequency[]> GetScheduleFrequnciesAsync();
+        System.Threading.Tasks.Task<ChcObjects.ScheduleFrequency[]> GetScheduleFrequnciesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetDisposalLocations", ReplyAction="http://tempuri.org/IBookingService/GetDisposalLocationsResponse")]
-        Chc.BookingService.DisposalLocation[] GetDisposalLocations();
+        ChcObjects.DisposalLocation[] GetDisposalLocations();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetDisposalLocations", ReplyAction="http://tempuri.org/IBookingService/GetDisposalLocationsResponse")]
-        System.Threading.Tasks.Task<Chc.BookingService.DisposalLocation[]> GetDisposalLocationsAsync();
+        System.Threading.Tasks.Task<ChcObjects.DisposalLocation[]> GetDisposalLocationsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetEWCs", ReplyAction="http://tempuri.org/IBookingService/GetEWCsResponse")]
+        ChcObjects.EWC[] GetEWCs();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/GetEWCs", ReplyAction="http://tempuri.org/IBookingService/GetEWCsResponse")]
+        System.Threading.Tasks.Task<ChcObjects.EWC[]> GetEWCsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -574,68 +97,76 @@ namespace Chc.BookingService {
                 base(binding, remoteAddress) {
         }
         
-        public Chc.BookingService.Service GetServiceById(int id) {
+        public ChcObjects.Service GetServiceById(int id) {
             return base.Channel.GetServiceById(id);
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Service> GetServiceByIdAsync(int id) {
+        public System.Threading.Tasks.Task<ChcObjects.Service> GetServiceByIdAsync(int id) {
             return base.Channel.GetServiceByIdAsync(id);
         }
         
-        public Chc.BookingService.Service[] GetServices() {
+        public ChcObjects.Service[] GetServices() {
             return base.Channel.GetServices();
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Service[]> GetServicesAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.Service[]> GetServicesAsync() {
             return base.Channel.GetServicesAsync();
         }
         
-        public Chc.BookingService.Service CreateService(Chc.BookingService.Service service, int userId) {
+        public ChcObjects.Service CreateService(ChcObjects.Service service, int userId) {
             return base.Channel.CreateService(service, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Service> CreateServiceAsync(Chc.BookingService.Service service, int userId) {
+        public System.Threading.Tasks.Task<ChcObjects.Service> CreateServiceAsync(ChcObjects.Service service, int userId) {
             return base.Channel.CreateServiceAsync(service, userId);
         }
         
-        public Chc.BookingService.Service UpdateService(Chc.BookingService.Service service, int userId) {
+        public ChcObjects.Service UpdateService(ChcObjects.Service service, int userId) {
             return base.Channel.UpdateService(service, userId);
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Service> UpdateServiceAsync(Chc.BookingService.Service service, int userId) {
+        public System.Threading.Tasks.Task<ChcObjects.Service> UpdateServiceAsync(ChcObjects.Service service, int userId) {
             return base.Channel.UpdateServiceAsync(service, userId);
         }
         
-        public Chc.BookingService.Container[] GetContainers() {
+        public ChcObjects.Container[] GetContainers() {
             return base.Channel.GetContainers();
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Container[]> GetContainersAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.Container[]> GetContainersAsync() {
             return base.Channel.GetContainersAsync();
         }
         
-        public Chc.BookingService.Carrier[] GetCarriers() {
+        public ChcObjects.Carrier[] GetCarriers() {
             return base.Channel.GetCarriers();
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.Carrier[]> GetCarriersAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.Carrier[]> GetCarriersAsync() {
             return base.Channel.GetCarriersAsync();
         }
         
-        public Chc.BookingService.ScheduleFrequency[] GetScheduleFrequncies() {
+        public ChcObjects.ScheduleFrequency[] GetScheduleFrequncies() {
             return base.Channel.GetScheduleFrequncies();
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.ScheduleFrequency[]> GetScheduleFrequnciesAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.ScheduleFrequency[]> GetScheduleFrequnciesAsync() {
             return base.Channel.GetScheduleFrequnciesAsync();
         }
         
-        public Chc.BookingService.DisposalLocation[] GetDisposalLocations() {
+        public ChcObjects.DisposalLocation[] GetDisposalLocations() {
             return base.Channel.GetDisposalLocations();
         }
         
-        public System.Threading.Tasks.Task<Chc.BookingService.DisposalLocation[]> GetDisposalLocationsAsync() {
+        public System.Threading.Tasks.Task<ChcObjects.DisposalLocation[]> GetDisposalLocationsAsync() {
             return base.Channel.GetDisposalLocationsAsync();
+        }
+        
+        public ChcObjects.EWC[] GetEWCs() {
+            return base.Channel.GetEWCs();
+        }
+        
+        public System.Threading.Tasks.Task<ChcObjects.EWC[]> GetEWCsAsync() {
+            return base.Channel.GetEWCsAsync();
         }
     }
 }

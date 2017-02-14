@@ -27,5 +27,7 @@ public interface IBookingService
     IList<ScheduleFrequency> GetScheduleFrequncies();
     [OperationContract]
     IList<DisposalLocation> GetDisposalLocations();
+    [OperationContract]
+    IList<EWC> GetEWCs();
 }
 

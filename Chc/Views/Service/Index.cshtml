@@ -1,4 +1,4 @@
-﻿@model Chc.BookingService.Service
+﻿@model ChcObjects.Service
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 
-@(Html.Kendo().Grid<Chc.BookingService.Service>()
+@(Html.Kendo().Grid<ChcObjects.Service>()
     .Name("ServiceGrid")
     .Columns(c =>
     {
@@ -27,7 +27,7 @@
     })
     .ToolBar(toolbar => toolbar.Create())
     .Editable(editable => editable.Mode(GridEditMode.PopUp)
-        .TemplateName("ServicePopUpEditor")
+        .TemplateName("ServicePopUpEditor").Window(w => { w.Width(575); w.Height(450); })
     )
     .Pageable()
     .Sortable()

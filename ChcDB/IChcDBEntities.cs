@@ -16,5 +16,6 @@ namespace ChcDB
         DbSet<tblDisposalLocation> tblDisposalLocations { get; set; }
         DbSet<tblScheduleFrequency> tblScheduleFrequencies { get; set; }
         DbSet<tblService> tblServices { get; set; }
+        DbSet<tblEWC> tblEWCs { get; set; }
     }
 }

@@ -49,4 +49,9 @@ public class BookingService : IBookingService
     {
         return new DisposalLocation().GetDisposalLocations();
     }
+
+    public IList<EWC> GetEWCs()
+    {
+        return new EWC().GetEWCs();
+    }
 }

@@ -50,6 +50,7 @@
             });
         });
     </script>*@
+    <script src="@Url.Content("~/Scripts/ServiceUI.js")"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -71,9 +72,10 @@
                     {
                         <li>@Html.ActionLink("Users", "Index", "UserManagement")</li>
                     }
-                    @if(User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Sites", "Index", "Site")</li>
+                        <li>@Html.ActionLink("Services", "Index", "Service")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

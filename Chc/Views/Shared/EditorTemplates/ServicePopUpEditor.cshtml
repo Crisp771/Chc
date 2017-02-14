@@ -1,22 +1,146 @@
-﻿@model Chc.BookingService.Service
+﻿@model ChcObjects.Service
 <br />
 @Html.HiddenFor(model => model.ServiceID)
-
-<div class="siteEditor">
-    <div class="editor-label">
-        @Html.LabelFor(model => model.SiteID)
+<div style="width : 550px; max-height : 350px;">
+    <div style="width : 250px; height : 350px; float : left;">
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SiteID)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DropDownListFor(model => model.SiteID).BindTo((System.Collections.IEnumerable) ViewData["Sites"]).DataValueField("SiteID").DataTextField("SiteName"))
+                @Html.ValidationMessageFor(model => model.SiteID)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContainerID)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DropDownListFor(model => model.ContainerID).BindTo((System.Collections.IEnumerable) ViewData["Containers"]).DataValueField("ContainerID").DataTextField("ContainerName"))
+                @Html.ValidationMessageFor(model => model.ContainerID)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ScheduleFrequencyID)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DropDownListFor(model => model.ScheduleFrequencyID).BindTo((System.Collections.IEnumerable) ViewData["ScheduleFrequencies"]).DataValueField("ScheduleFrequencyID").DataTextField("FrequencyName"))
+                @Html.ValidationMessageFor(model => model.ScheduleFrequencyID)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DisposalLocationID)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DropDownListFor(model => model.DisposalLocationID).BindTo((System.Collections.IEnumerable) ViewData["DisposalLocations"]).DataValueField("DisposalLocationID").DataTextField("DisposalLocationName"))
+                @Html.ValidationMessageFor(model => model.SiteID)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CarrierID)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DropDownListFor(model => model.CarrierID).BindTo((System.Collections.IEnumerable) ViewData["Carriers"]).DataValueField("CarrierID").DataTextField("CarrierName"))
+                @Html.ValidationMessageFor(model => model.SiteID)
+            </div>
+        </div>
+        <div class="startDateEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.StartDate)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DatePickerFor(model => model.StartDate).Culture("en-GB").Format("dd/MM/yyyy"))
+                @Html.ValidationMessageFor(model => model.StartDate)
+            </div>
+        </div>
     </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.SiteID)
-        @Html.ValidationMessageFor(model => model.SiteID)
+    <div style="width : 250px; height : 350px; float : right; margin-left : 20px;">
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContractNumber)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().TextBoxFor(model => model.ContractNumber).Enable(false))
+                @Html.ValidationMessageFor(model => model.ContractNumber)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EWC)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().AutoCompleteFor(model => model.EWC)
+                       .Name("EWC")
+                       .Placeholder("EW Code")
+                       .DataTextField("EWCode")
+                       .Filter("contains")
+                       .MinLength(2)
+                       .Template("#= EWCode # | #= Description #")
+                       .DataSource(d =>
+                       {
+                           //d.Read(r =>
+                           //{
+                           //    r.Action("GetEWcodes", "Service").Data("ServiceUI.onEWCAdditionalData");
+                           //}).ServerFiltering(true);
+                           d.Custom()
+                            .ServerFiltering(true)
+                            .ServerPaging(true)
+                            .PageSize(10)
+                            .Type("aspnetmvc-ajax")
+                            .Transport(t =>
+                            {
+                                t.Read("GetEWcodes", "Service");
+                            })
+                            .Schema(s =>
+                            {
+                                s.Data("Data"); 
+                                s.Total("Total");
+                            });
+                       }))
+                @Html.ValidationMessageFor(model => model.EWC)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.InPrice)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().CurrencyTextBoxFor(model => model.InPrice))
+                @Html.ValidationMessageFor(model => model.InPrice)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OutPrice)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().CurrencyTextBoxFor(model => model.OutPrice))
+                @Html.ValidationMessageFor(model => model.OutPrice)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ScheduleDay)
+            </div>
+            <div class="editor-field">
+                @*@(Html.Kendo().TextBoxFor(model => model.ScheduleDay).Enable(false).Format("{0:dddd}").Value(4))*@
+                @(Html.Kendo().DropDownListFor(model => model.ScheduleDay).BindTo(Enum.GetNames(typeof(DayOfWeek)).ToList()).Enable(false))
+                @Html.ValidationMessageFor(model => model.ScheduleDay)
+            </div>
+        </div>
+        <div class="siteEditor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsRecurring)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().CheckBoxFor(model => model.IsRecurring))
+                @Html.ValidationMessageFor(model => model.IsRecurring)
+            </div>
+        </div>
     </div>
-</div>
-<div class="startDateEditor">
-    <div class="editor-label">
-        @Html.LabelFor(model => model.StartDate)
-    </div>
-    <div class="editor-field">
-        @(Html.Kendo().DatePickerFor(model => model.StartDate).Culture("en-GB").Format("dd/MM/yyyy"))
-        @Html.ValidationMessageFor(model => model.StartDate)
-    </div>
+    <div style="clear : both; min-height : 30px;"></div>
 </div>

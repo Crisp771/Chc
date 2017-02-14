@@ -26,6 +26,17 @@
           <Property Name="DisposalLocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DisposalLocationName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblEWC">
+          <Key>
+            <PropertyRef Name="EWCode" />
+          </Key>
+          <Property Name="Chapter" Type="int" Nullable="false" />
+          <Property Name="SubChapter" Type="int" Nullable="false" />
+          <Property Name="WasteType" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="EWCode" Type="varchar" MaxLength="6" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsHazardous" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblRoles">
           <Key>
             <PropertyRef Name="RoleID" />
@@ -49,7 +60,6 @@
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="ContractNumber" Type="int" Nullable="false" />
           <Property Name="ContainerID" Type="int" Nullable="false" />
-          <Property Name="EWC" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ScheduleFrequencyID" Type="int" Nullable="false" />
           <Property Name="ScheduleDay" Type="int" Nullable="false" />
           <Property Name="InPrice" Type="money" Nullable="false" />
@@ -57,6 +67,7 @@
           <Property Name="CarrierID" Type="int" Nullable="false" />
           <Property Name="DisposalLocationID" Type="int" Nullable="false" />
           <Property Name="IsRecurring" Type="bit" Nullable="false" />
+          <Property Name="EWC" Type="varchar" MaxLength="6" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSICLookup">
           <Key>
@@ -143,6 +154,18 @@
             </Principal>
             <Dependent Role="tblServices">
               <PropertyRef Name="DisposalLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblServices_tblEWC">
+          <End Role="tblEWC" Type="Self.tblEWC" Multiplicity="1" />
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEWC">
+              <PropertyRef Name="EWCode" />
+            </Principal>
+            <Dependent Role="tblServices">
+              <PropertyRef Name="EWC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -246,6 +269,7 @@
           <EntitySet Name="tblCarriers" EntityType="Self.tblCarriers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblContainers" EntityType="Self.tblContainers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDisposalLocations" EntityType="Self.tblDisposalLocations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEWC" EntityType="Self.tblEWC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblScheduleFrequencies" EntityType="Self.tblScheduleFrequencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblServices" EntityType="Self.tblServices" Schema="dbo" store:Type="Tables" />
@@ -264,6 +288,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_tblServices_tblDisposalLocations" Association="Self.FK_tblServices_tblDisposalLocations">
             <End Role="tblDisposalLocations" EntitySet="tblDisposalLocations" />
+            <End Role="tblServices" EntitySet="tblServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblServices_tblEWC" Association="Self.FK_tblServices_tblEWC">
+            <End Role="tblEWC" EntitySet="tblEWC" />
             <End Role="tblServices" EntitySet="tblServices" />
           </AssociationSet>
           <AssociationSet Name="FK_tblServices_tblScheduleFrequencies" Association="Self.FK_tblServices_tblScheduleFrequencies">
@@ -357,6 +385,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_tblServices_tblSites" Association="ChcDBModel.FK_tblServices_tblSites">
             <End Role="tblSite" EntitySet="tblSites" />
+            <End Role="tblService" EntitySet="tblServices" />
+          </AssociationSet>
+          <EntitySet Name="tblEWCs" EntityType="ChcDBModel.tblEWC" />
+          <AssociationSet Name="FK_tblServices_tblEWC" Association="ChcDBModel.FK_tblServices_tblEWC">
+            <End Role="tblEWC" EntitySet="tblEWCs" />
             <End Role="tblService" EntitySet="tblServices" />
           </AssociationSet>
         </EntityContainer>
@@ -545,7 +578,7 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ContractNumber" Type="Int32" Nullable="false" />
           <Property Name="ContainerID" Type="Int32" Nullable="false" />
-          <Property Name="EWC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EWC" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="ScheduleFrequencyID" Type="Int32" Nullable="false" />
           <Property Name="ScheduleDay" Type="Int32" Nullable="false" />
           <Property Name="InPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
@@ -558,6 +591,7 @@
           <NavigationProperty Name="tblDisposalLocation" Relationship="ChcDBModel.FK_tblServices_tblDisposalLocations" FromRole="tblService" ToRole="tblDisposalLocation" />
           <NavigationProperty Name="tblScheduleFrequency" Relationship="ChcDBModel.FK_tblServices_tblScheduleFrequencies" FromRole="tblService" ToRole="tblScheduleFrequency" />
           <NavigationProperty Name="tblSite" Relationship="ChcDBModel.FK_tblServices_tblSites" FromRole="tblService" ToRole="tblSite" />
+          <NavigationProperty Name="tblEWC" Relationship="ChcDBModel.FK_tblServices_tblEWC" FromRole="tblService" ToRole="tblEWC" />
         </EntityType>
         <Association Name="FK_tblServices_tblCarriers">
           <End Type="ChcDBModel.tblCarrier" Role="tblCarrier" Multiplicity="1" />
@@ -616,6 +650,30 @@
             </Principal>
             <Dependent Role="tblService">
               <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblEWC">
+          <Key>
+            <PropertyRef Name="EWCode" />
+          </Key>
+          <Property Name="Chapter" Type="Int32" Nullable="false" />
+          <Property Name="SubChapter" Type="Int32" Nullable="false" />
+          <Property Name="WasteType" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsHazardous" Type="Boolean" Nullable="false" />
+          <Property Name="EWCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblEWC" FromRole="tblEWC" ToRole="tblService" />
+        </EntityType>
+        <Association Name="FK_tblServices_tblEWC">
+          <End Type="ChcDBModel.tblEWC" Role="tblEWC" Multiplicity="1" />
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEWC">
+              <PropertyRef Name="EWCode" />
+            </Principal>
+            <Dependent Role="tblService">
+              <PropertyRef Name="EWC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -738,6 +796,18 @@
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="SiteID" ColumnName="SiteID" />
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEWCs">
+            <EntityTypeMapping TypeName="ChcDBModel.tblEWC">
+              <MappingFragment StoreEntitySet="tblEWC">
+                <ScalarProperty Name="EWCode" ColumnName="EWCode" />
+                <ScalarProperty Name="IsHazardous" ColumnName="IsHazardous" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WasteType" ColumnName="WasteType" />
+                <ScalarProperty Name="SubChapter" ColumnName="SubChapter" />
+                <ScalarProperty Name="Chapter" ColumnName="Chapter" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

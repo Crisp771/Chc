@@ -71,10 +71,12 @@
     </Compile>
     <Compile Include="Container.cs" />
     <Compile Include="DisposalLocation.cs" />
+    <Compile Include="EWC.cs" />
     <Compile Include="ICarrier.cs" />
     <Compile Include="IChcDBEntities.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="IDisposalLocation.cs" />
+    <Compile Include="IEwc.cs" />
     <Compile Include="IScheduleFrequency.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="ISiteAudit.cs" />
@@ -97,6 +99,9 @@
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblDisposalLocation.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEWC.cs">
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblRole.cs">

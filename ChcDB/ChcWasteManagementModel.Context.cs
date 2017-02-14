@@ -36,5 +36,6 @@ namespace ChcDB
         public virtual DbSet<tblDisposalLocation> tblDisposalLocations { get; set; }
         public virtual DbSet<tblScheduleFrequency> tblScheduleFrequencies { get; set; }
         public virtual DbSet<tblService> tblServices { get; set; }
+        public virtual DbSet<tblEWC> tblEWCs { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Chc.Models;
 using Chc.SiteService;
+using ChcObjects;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System;

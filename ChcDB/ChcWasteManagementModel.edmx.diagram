@@ -27,6 +27,8 @@
         <AssociationConnector Association="ChcDBModel.FK_tblServices_tblDisposalLocations" />
         <AssociationConnector Association="ChcDBModel.FK_tblServices_tblScheduleFrequencies" />
         <AssociationConnector Association="ChcDBModel.FK_tblServices_tblSites" />
+        <EntityTypeShape EntityType="ChcDBModel.tblEWC" Width="1.5" PointX="7.375" PointY="1" />
+        <AssociationConnector Association="ChcDBModel.FK_tblServices_tblEWC" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
