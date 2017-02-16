@@ -5,6 +5,7 @@
       <xs:element minOccurs="0" name="CarrierID" type="xs:int" />
       <xs:element minOccurs="0" name="ContainerID" type="xs:int" />
       <xs:element minOccurs="0" name="ContractNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
       <xs:element minOccurs="0" name="DisposalLocationID" type="xs:int" />
       <xs:element minOccurs="0" name="EWC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="InPrice" type="xs:decimal" />
@@ -93,4 +94,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="EWC" nillable="true" type="tns:EWC" />
+  <xs:complexType name="ArrayOfBooking">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Booking" nillable="true" type="tns:Booking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBooking" nillable="true" type="tns:ArrayOfBooking" />
+  <xs:complexType name="Booking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BookingID" type="xs:int" />
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="InPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OutPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ServiceDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ServiceID" type="xs:int" />
+      <xs:element minOccurs="0" name="SiteID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Booking" nillable="true" type="tns:Booking" />
 </xs:schema>

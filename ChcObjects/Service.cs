@@ -23,6 +23,7 @@ namespace ChcObjects
         public int SiteID { get; set; }
         [DataMember]
         [DataType(DataType.Date)]
+        [Required]
         [Display(Name = "Service Start Date", Prompt = "Start Date", Description = "Service Start Date")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime StartDate { get; set; }
@@ -34,9 +35,10 @@ namespace ChcObjects
         [Display(Name = "Container Type", Prompt = "Please pick a container.", Description = "Container Type")]
         public int ContainerID { get; set; }
         [DataMember]
+        [Required]
         [Display(Name = "EWC Number", Prompt = "Please enter an EWC.", Description = "European Waste Code")]
         [DataType(DataType.Text)]
-        [StringLength(50)]
+        [StringLength(6)]
         public string EWC { get; set; }
         [DataMember]
         [Display(Name = "Schedule Frequency", Prompt = "Please pick a Schedule Frequency.", Description = "Schedule Frequency")]

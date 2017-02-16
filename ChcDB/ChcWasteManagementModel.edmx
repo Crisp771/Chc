@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ChcDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBookings">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+          <Property Name="InPrice" Type="money" />
+          <Property Name="OutPrice" Type="money" />
+          <Property Name="ServiceDate" Type="date" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblCarriers">
           <Key>
             <PropertyRef Name="CarrierID" />
@@ -129,6 +141,30 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_tblBookings_tblServices">
+          <End Role="tblServices" Type="Self.tblServices" Multiplicity="1" />
+          <End Role="tblBookings" Type="Self.tblBookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblServices">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="tblBookings">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBookings_tblSites">
+          <End Role="tblSites" Type="Self.tblSites" Multiplicity="1" />
+          <End Role="tblBookings" Type="Self.tblBookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSites">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="tblBookings">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblContractNumber_tblServices">
           <End Role="tblServices" Type="Self.tblServices" Multiplicity="1" />
           <End Role="tblContractNumber" Type="Self.tblContractNumber" Multiplicity="*" />
@@ -286,6 +322,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ChcDBModelStoreContainer">
+          <EntitySet Name="tblBookings" EntityType="Self.tblBookings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCarriers" EntityType="Self.tblCarriers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblContainers" EntityType="Self.tblContainers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblContractNumber" EntityType="Self.tblContractNumber" Schema="dbo" store:Type="Tables" />
@@ -299,6 +336,14 @@
           <EntitySet Name="tblSites" EntityType="Self.tblSites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserAudit" EntityType="Self.tblUserAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBookings_tblServices" Association="Self.FK_tblBookings_tblServices">
+            <End Role="tblServices" EntitySet="tblServices" />
+            <End Role="tblBookings" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBookings_tblSites" Association="Self.FK_tblBookings_tblSites">
+            <End Role="tblSites" EntitySet="tblSites" />
+            <End Role="tblBookings" EntitySet="tblBookings" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblContractNumber_tblServices" Association="Self.FK_tblContractNumber_tblServices">
             <End Role="tblServices" EntitySet="tblServices" />
             <End Role="tblContractNumber" EntitySet="tblContractNumber" />
@@ -422,6 +467,15 @@
             <End Role="tblService" EntitySet="tblServices" />
             <End Role="tblContractNumber" EntitySet="tblContractNumbers" />
           </AssociationSet>
+          <EntitySet Name="tblBookings" EntityType="ChcDBModel.tblBooking" />
+          <AssociationSet Name="FK_tblBookings_tblServices" Association="ChcDBModel.FK_tblBookings_tblServices">
+            <End Role="tblService" EntitySet="tblServices" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBookings_tblSites" Association="ChcDBModel.FK_tblBookings_tblSites">
+            <End Role="tblSite" EntitySet="tblSites" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblRole">
           <Key>
@@ -518,6 +572,7 @@
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblSiteAudits" Relationship="ChcDBModel.FK_tblSiteAudit_tblSites" FromRole="tblSite" ToRole="tblSiteAudit" />
           <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblSites" FromRole="tblSite" ToRole="tblService" />
+          <NavigationProperty Name="tblBookings" Relationship="ChcDBModel.FK_tblBookings_tblSites" FromRole="tblSite" ToRole="tblBooking" />
         </EntityType>
         <Association Name="FK_tblSites_tblSICLookup">
           <End Type="ChcDBModel.tblSICLookup" Role="tblSICLookup" Multiplicity="1" />
@@ -624,6 +679,7 @@
           <NavigationProperty Name="tblEWC" Relationship="ChcDBModel.FK_tblServices_tblEWC" FromRole="tblService" ToRole="tblEWC" />
           <NavigationProperty Name="tblContractNumbers" Relationship="ChcDBModel.FK_tblContractNumber_tblServices" FromRole="tblService" ToRole="tblContractNumber" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblBookings" Relationship="ChcDBModel.FK_tblBookings_tblServices" FromRole="tblService" ToRole="tblBooking" />
         </EntityType>
         <Association Name="FK_tblServices_tblCarriers">
           <End Type="ChcDBModel.tblCarrier" Role="tblCarrier" Multiplicity="1" />
@@ -726,6 +782,44 @@
             </Principal>
             <Dependent Role="tblContractNumber">
               <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="InPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="OutPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ServiceDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tblService" Relationship="ChcDBModel.FK_tblBookings_tblServices" FromRole="tblBooking" ToRole="tblService" />
+          <NavigationProperty Name="tblSite" Relationship="ChcDBModel.FK_tblBookings_tblSites" FromRole="tblBooking" ToRole="tblSite" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblBookings_tblServices">
+          <End Type="ChcDBModel.tblService" Role="tblService" Multiplicity="1" />
+          <End Type="ChcDBModel.tblBooking" Role="tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblService">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBookings_tblSites">
+          <End Type="ChcDBModel.tblSite" Role="tblSite" Multiplicity="1" />
+          <End Type="ChcDBModel.tblBooking" Role="tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="SiteID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -869,6 +963,19 @@
               <MappingFragment StoreEntitySet="tblContractNumber">
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
                 <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBookings">
+            <EntityTypeMapping TypeName="ChcDBModel.tblBooking">
+              <MappingFragment StoreEntitySet="tblBookings">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+                <ScalarProperty Name="OutPrice" ColumnName="OutPrice" />
+                <ScalarProperty Name="InPrice" ColumnName="InPrice" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

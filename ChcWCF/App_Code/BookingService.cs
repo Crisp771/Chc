@@ -1,4 +1,5 @@
-﻿using ChcObjects;
+﻿using ChcDB;
+using ChcObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,5 +54,22 @@ public class BookingService : IBookingService
     public IList<EWC> GetEWCs()
     {
         return new EWC().GetEWCs();
+    }
+
+    public IList<Booking> GetBookings()
+    {
+        return new Booking().GetBookings();
+    }
+    public Booking GetBooking(int id)
+    {
+        return new Booking().GetBooking(id);
+    }
+    public IBooking CreateBooking(IBooking booking)
+    {
+        return new Booking().CreateBooking(booking);
+    }
+    public IBooking UpdateBooking(IBooking booking)
+    {
+        return new Booking().UpdateBooking(booking);
     }
 }

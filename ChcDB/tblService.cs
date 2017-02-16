@@ -18,6 +18,7 @@ namespace ChcDB
         public tblService()
         {
             this.tblContractNumbers = new HashSet<tblContractNumber>();
+            this.tblBookings = new HashSet<tblBooking>();
         }
     
         public int ServiceID { get; set; }
@@ -43,5 +44,7 @@ namespace ChcDB
         public virtual tblEWC tblEWC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblContractNumber> tblContractNumbers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBooking> tblBookings { get; set; }
     }
 }

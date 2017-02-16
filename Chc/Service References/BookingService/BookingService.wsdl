@@ -61,6 +61,30 @@
   <wsdl:message name="IBookingService_GetEWCs_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEWCsResponse" />
   </wsdl:message>
+  <wsdl:message name="IBookingService_GetBookings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookings" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetBookings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBooking" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_GetBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_CreateBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBooking" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_CreateBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_UpdateBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBooking" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_UpdateBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBookingResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBookingService">
     <wsdl:operation name="GetServiceById">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetServiceById" message="tns:IBookingService_GetServiceById_InputMessage" />
@@ -97,6 +121,22 @@
     <wsdl:operation name="GetEWCs">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetEWCs" message="tns:IBookingService_GetEWCs_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetEWCsResponse" message="tns:IBookingService_GetEWCs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetBookings" message="tns:IBookingService_GetBookings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetBookingsResponse" message="tns:IBookingService_GetBookings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/GetBooking" message="tns:IBookingService_GetBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/GetBookingResponse" message="tns:IBookingService_GetBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/CreateBooking" message="tns:IBookingService_CreateBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/CreateBookingResponse" message="tns:IBookingService_CreateBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/UpdateBooking" message="tns:IBookingService_UpdateBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/UpdateBookingResponse" message="tns:IBookingService_UpdateBooking_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBookingService" type="tns:IBookingService">
@@ -175,6 +215,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetEWCs">
       <soap:operation soapAction="http://tempuri.org/IBookingService/GetEWCs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetBookings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBooking">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/GetBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/CreateBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBooking">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/UpdateBooking" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

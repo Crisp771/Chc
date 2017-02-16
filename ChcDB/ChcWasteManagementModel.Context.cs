@@ -38,5 +38,6 @@ namespace ChcDB
         public virtual DbSet<tblService> tblServices { get; set; }
         public virtual DbSet<tblEWC> tblEWCs { get; set; }
         public virtual DbSet<tblContractNumber> tblContractNumbers { get; set; }
+        public virtual DbSet<tblBooking> tblBookings { get; set; }
     }
 }

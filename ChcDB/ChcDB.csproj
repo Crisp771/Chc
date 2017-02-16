@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Booking.cs" />
     <Compile Include="Carrier.cs" />
     <Compile Include="ChcDBEntities.cs" />
     <Compile Include="ChcWasteManagementModel.Context.cs">
@@ -73,6 +74,7 @@
     <Compile Include="ContractNumber.cs" />
     <Compile Include="DisposalLocation.cs" />
     <Compile Include="EWC.cs" />
+    <Compile Include="IBooking.cs" />
     <Compile Include="ICarrier.cs" />
     <Compile Include="IChcDBEntities.cs" />
     <Compile Include="IContainer.cs" />
@@ -94,6 +96,9 @@
     <Compile Include="SICLookup.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="SiteAudit.cs" />
+    <Compile Include="tblBooking.cs">
+      <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblCarrier.cs">
       <DependentUpon>ChcWasteManagementModel.tt</DependentUpon>
     </Compile>

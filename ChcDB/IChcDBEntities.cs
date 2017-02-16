@@ -19,5 +19,6 @@ namespace ChcDB
         DbSet<tblService> tblServices { get; set; }
         DbSet<tblEWC> tblEWCs { get; set; }
         DbSet<tblContractNumber> tblContractNumbers { get; set; }
+        DbSet<tblBooking> tblBookings { get; set; }
     }
 }

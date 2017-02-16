@@ -1,4 +1,5 @@
-﻿using ChcObjects;
+﻿using ChcDB;
+using ChcObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,13 @@ public interface IBookingService
     IList<DisposalLocation> GetDisposalLocations();
     [OperationContract]
     IList<EWC> GetEWCs();
+    [OperationContract]
+    IList<Booking> GetBookings();
+    [OperationContract]
+    Booking GetBooking(int id);
+    [OperationContract]
+    IBooking CreateBooking(IBooking booking);
+    [OperationContract]
+    IBooking UpdateBooking(IBooking booking);
 }
 
