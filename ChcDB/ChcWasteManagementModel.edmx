@@ -22,7 +22,13 @@
             <PropertyRef Name="CarrierID" />
           </Key>
           <Property Name="CarrierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CarrierName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CarrierName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="200" />
+          <Property Name="AddressLine3" Type="nvarchar" MaxLength="200" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="WasteCarriersLicence" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="tblContainers">
           <Key>
@@ -627,8 +633,14 @@
             <PropertyRef Name="CarrierID" />
           </Key>
           <Property Name="CarrierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CarrierName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarrierName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblServices" Relationship="ChcDBModel.FK_tblServices_tblCarriers" FromRole="tblCarrier" ToRole="tblService" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="WasteCarriersLicence" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="tblContainer">
           <Key>
@@ -897,6 +909,12 @@
           <EntitySetMapping Name="tblCarriers">
             <EntityTypeMapping TypeName="ChcDBModel.tblCarrier">
               <MappingFragment StoreEntitySet="tblCarriers">
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="WasteCarriersLicence" ColumnName="WasteCarriersLicence" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
                 <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
                 <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
               </MappingFragment>

@@ -19,6 +19,30 @@ namespace ChcObjects
         [DataType(DataType.Text)]
         [StringLength(50)]
         public string CarrierName { get; set; }
+        [DataMember]
+        [DataType(DataType.Text)]
+        [StringLength(200)]
+        public string AddressLine1 { get; set; }
+        [DataMember]
+        [DataType(DataType.Text)]
+        [StringLength(200)]
+        public string AddressLine2 { get; set; }
+        [DataMember]
+        [DataType(DataType.Text)]
+        [StringLength(200)]
+        public string AddressLine3 { get; set; }
+        [DataMember]
+        [DataType(DataType.Text)]
+        [StringLength(8)]
+        public string Postcode { get; set; }
+        [DataMember]
+        [DataType(DataType.Text)]
+        [StringLength(15)]
+        public string WasteCarriersLicence { get; set; }
+        [DataMember]
+        [DataType(DataType.Date)]
+        public System.DateTime ExpiryDate { get; set; }
+
         public Carrier()
         {
             _context = new ChcDBEntities();

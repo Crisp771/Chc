@@ -171,4 +171,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetScheduledEvents">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScheduledEventsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ChcObjects" minOccurs="0" name="GetScheduledEventsResult" nillable="true" type="q14:ArrayOfScheduling" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

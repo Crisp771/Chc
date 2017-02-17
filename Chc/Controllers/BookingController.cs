@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChcObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,5 +21,10 @@ namespace Chc.Controllers
             ViewData["SiteLookupData"] = new SiteService.SiteServiceClient().GetSites();
             ViewData["ServiceLookupData"] = new BookingService.BookingServiceClient().GetServices();
         }
+
+        //public Booking GetBooking()
+        //{
+
+        //}
     }
 }

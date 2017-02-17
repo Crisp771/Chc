@@ -1,4 +1,4 @@
-﻿@model Chc.BookingService.Booking
+﻿@model ChcObjects.Booking
 
 @{
     ViewBag.Title = "Bookings";
@@ -6,7 +6,7 @@
 
 <h2>Bookings</h2>
 
-@(Html.Kendo().Grid<Chc.BookingService.Booking>()
+@(Html.Kendo().Grid<ChcObjects.Booking>()
     .Name("BookingGrid")
     .Columns(c =>
     {

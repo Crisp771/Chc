@@ -38,5 +38,7 @@ public interface IBookingService
     IBooking CreateBooking(IBooking booking);
     [OperationContract]
     IBooking UpdateBooking(IBooking booking);
+    [OperationContract]
+    IList<Scheduling> GetScheduledEvents();
 }
 

@@ -22,6 +22,12 @@ namespace ChcDB
     
         public int CarrierID { get; set; }
         public string CarrierName { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string AddressLine3 { get; set; }
+        public string Postcode { get; set; }
+        public string WasteCarriersLicence { get; set; }
+        public System.DateTime ExpiryDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblService> tblServices { get; set; }

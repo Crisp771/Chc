@@ -180,6 +180,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
@@ -669,6 +670,8 @@
     <Content Include="Properties\DataSources\ChcObjects.User.datasource" />
     <Content Include="Properties\DataSources\ChcObjects.UserAudit.datasource" />
     <Content Include="Properties\DataSources\ChcObjects.EWC.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.Booking.datasource" />
+    <Content Include="Properties\DataSources\ChcObjects.Scheduling.datasource" />
     <None Include="Properties\PublishProfiles\ChcPublish.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1718,27 +1721,6 @@
     <Content Include="Scripts\ServiceUI.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="Service References\BookingService\BookingService.disco" />
-    <Content Include="Service References\BookingService\Chc.BookingService.Booking.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.Carrier.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.Container.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.DisposalLocation.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.EWC.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.ScheduleFrequency.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BookingService\Chc.BookingService.Service.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Service References\BookingService\configuration91.svcinfo" />
     <None Include="Service References\BookingService\configuration.svcinfo" />
     <None Include="Service References\BookingService\Reference.svcmap">
@@ -2031,6 +2013,7 @@
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -112,4 +112,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Booking" nillable="true" type="tns:Booking" />
+  <xs:complexType name="ArrayOfScheduling">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Scheduling" nillable="true" type="tns:Scheduling" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScheduling" nillable="true" type="tns:ArrayOfScheduling" />
+  <xs:complexType name="Scheduling">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventStart" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Scheduling" nillable="true" type="tns:Scheduling" />
 </xs:schema>

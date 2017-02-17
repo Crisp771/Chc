@@ -72,4 +72,9 @@ public class BookingService : IBookingService
     {
         return new Booking().UpdateBooking(booking);
     }
+
+    public IList<Scheduling> GetScheduledEvents()
+    {
+        return new Scheduling().GetScheduledEvents();
+    }
 }

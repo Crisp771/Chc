@@ -39,7 +39,7 @@ namespace Chc.Controllers
             return Json(new BookingServiceClient().GetEWCs().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CreateService(BookingService.Service service)
+        public JsonResult CreateService(Service service)
         {
             return Json(new BookingServiceClient().CreateService(service, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
@@ -48,11 +48,11 @@ namespace Chc.Controllers
             var services = new BookingServiceClient().GetServices();
             return Json(services.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult UpdateService(BookingService.Service service)
+        public JsonResult UpdateService(Service service)
         {
             return Json(new BookingServiceClient().UpdateService(service, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult DeleteService(BookingService.Service service)
+        public JsonResult DeleteService(Service service)
         {
             service.Deleted = true;
             return Json(new BookingServiceClient().UpdateService(service, ((CustomPrincipal) User).Id), JsonRequestBehavior.AllowGet);
