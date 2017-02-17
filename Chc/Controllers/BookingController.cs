@@ -11,7 +11,14 @@ namespace Chc.Controllers
         // GET: Booking
         public ActionResult Index()
         {
+            PopulateLookups();
             return View();
+        }
+
+        public void PopulateLookups()
+        {
+            ViewData["SiteLookupData"] = new SiteService.SiteServiceClient().GetSites();
+            ViewData["ServiceLookupData"] = new BookingService.BookingServiceClient().GetServices();
         }
     }
 }

@@ -1,0 +1,36 @@
+﻿@model Chc.BookingService.Booking
+
+@{
+    ViewBag.Title = "Bookings";
+}
+
+<h2>Bookings</h2>
+
+@(Html.Kendo().Grid<Chc.BookingService.Booking>()
+    .Name("BookingGrid")
+    .Columns(c =>
+    {
+        c.Bound(b => b.ServiceDate);
+        //c.Bound(b => b.SICcode);
+        c.ForeignKey(b => b.SiteID, (System.Collections.IEnumerable) ViewData["SiteLookupData"], "SiteID", "SiteName");
+        c.ForeignKey(b => b.ServiceID, (System.Collections.IEnumerable) ViewData["ServiceLookupData"], "ServiceID", "ServiceID");
+        c.Bound(b => b.InPrice);
+        c.Bound(b => b.OutPrice);
+        c.Command(b => { b.Edit(); b.Destroy(); });
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Model(model => { model.Id(s => s.BookingID); })
+        .Create(update => update.Action("CreateBooking", "Booking"))
+        .Read(read => read.Action("GetBookings", "Booking"))
+        .Update(update => update.Action("UpdateBooking", "Booking"))
+        .Destroy(update => update.Action("DeleteBooking", "Booking"))
+    )
+)
